@@ -161,5 +161,11 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    # On Windows, port reuse lets an old copy of the app keep answering requests. Refuse instead.
+    ThreadingHTTPServer.allow_reuse_address = False
+    try:
+        server = ThreadingHTTPServer(("127.0.0.1", 8000), Handler)
+    except OSError:
+        raise SystemExit("Port 8000 is already in use. Close the other window running app.py, then try again.")
     print("Mind the Gap running at http://localhost:8000  (Ctrl+C to stop)")
-    ThreadingHTTPServer(("127.0.0.1", 8000), Handler).serve_forever()
+    server.serve_forever()
