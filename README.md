@@ -14,9 +14,11 @@ Built at Night Shift, the Mubit hackathon, Canary Wharf, October 2026.
 
 | Model | Fully right | Every field | New streets | Median reply |
 |---|---|---|---|---|
-| GPT-4.1 mini (SF) | see `results/` after running `eval_sf.py` | | | |
-| GPT-6 Sol (SF frontier) | see `results/` after running `eval_sf.py` | | | |
-| **London model v1** (Qwen3 4B + Mubit adapter) | **75%** | **94%** | 58% | 792 ms |
+| GPT-4.1 mini (SF) | 30% | 79% | 33% | 960 ms |
+| GPT-6 Sol (SF frontier) | 25% | 75% | 42% | 1,431 ms |
+| **London model v1** (Qwen3 4B + Mubit adapter) | **75%** | **94%** | **58%** | **792 ms** |
+
+A 4 billion parameter model trained on London corrections gets three times as many addresses fully right as the SF frontier model, and answers almost twice as fast.
 
 Across 260 training calls, GPT-4.1 mini got about 22% of addresses fully right.
 
