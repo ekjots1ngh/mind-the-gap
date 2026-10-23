@@ -39,7 +39,10 @@ def load_key():
 
 
 client = OpenAI(base_url="https://api.mubit.ai/openai/v1/", api_key=load_key())
-tests = json.loads(Path(__file__).with_name("testset.json").read_text(encoding="utf-8"))
+# python eval_sf.py --set testset2.json  scores a different test set into results/<that set>/
+SET = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else "testset.json"
+OUTDIR = Path("results") if SET == "testset.json" else Path("results") / Path(SET).stem
+tests = json.loads(Path(__file__).with_name(SET).read_text(encoding="utf-8"))
 
 
 def run_one(model, t):
@@ -75,11 +78,11 @@ def summarise(name, rows):
 
 
 if __name__ == "__main__":
-    Path("results").mkdir(exist_ok=True)
+    OUTDIR.mkdir(parents=True, exist_ok=True)
     for model in MODELS:
         with ThreadPoolExecutor(max_workers=8) as pool:
             rows = list(pool.map(lambda t: run_one(model, t), tests))
         name = model + ("+rules" if WITH_RULES else "")
-        Path(f"results/{name}.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
+        (OUTDIR / f"{name}.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
         summarise(name, rows)
     print("\nSaved results/. Paste these lines back to Claude.")

@@ -1,5 +1,7 @@
-import json, random
-random.seed(2026)
+import json, random, sys
+SEED = int(sys.argv[1]) if len(sys.argv) > 1 else 2026
+OUT = sys.argv[2] if len(sys.argv) > 2 else "testset.json"
+random.seed(SEED)
 flats = ["Flat 3", "Flat 2B", "Basement Flat", "Top Floor Flat", "Flat 14", None, None]
 seen = [("Churchill Pl","Canary Wharf","E14 5RE"),("Mare St","Hackney","E8 1HE"),("Brick Ln","Shoreditch","E1 6QL"),
         ("Coldharbour Ln","Brixton","SW9 8LH"),("Upper St","Islington","N1 0NY"),("Kilburn High Rd","Kilburn","NW6 6JP"),
@@ -21,5 +23,5 @@ def make(streets, n, tag):
         out.append({"set": tag, "input": raw, "truth": {"flat": flat, "number": num, "street": street, "area": area, "postcode": pc}})
     return out
 tests = make(seen, 28, "seen streets") + make(unseen, 12, "new streets")
-json.dump(tests, open("testset.json","w"), indent=1)
+json.dump(tests, open(OUT,"w"), indent=1)
 print(len(tests)); [print(t["set"][:4], "|", t["input"]) for t in tests[:5]+tests[-3:]]

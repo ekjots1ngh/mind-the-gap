@@ -8,14 +8,15 @@ Usage (PowerShell):
     $env:MUBIT_API_KEY="your mubit key"
     python send_batch.py --seed 8 --count 120 --out batch2.csv
     python send_batch.py --v2 --seed 21 --count 120 --model gpt-6-sol --out v2_batch.csv
+    python send_batch.py --rules --seed 31 --count 60 --out teach_a.csv   # teacher traffic for the rules task
 """
 import argparse
 import csv
 import json
 import random
 
-from eval_sf import client
-from grader import SYSTEM_PROMPT, grade
+from eval_sf import PROMPT, client
+from grader import grade
 
 FLATS = ["Flat 3", "Flat 2B", "Basement Flat", "Top Floor Flat", "Flat 14", None, None]
 STREETS = [("Churchill Pl", "Canary Wharf", "E14 5RE"), ("Mare St", "Hackney", "E8 1HE"), ("Brick Ln", "Shoreditch", "E1 6QL"),
@@ -56,13 +57,14 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="gpt-4.1-mini")
     ap.add_argument("--out", default="batch.csv")
     ap.add_argument("--v2", action="store_true", help="always write the street out in full (road, lane, square...)")
+    ap.add_argument("--rules", action="store_true", help="write the house rules into the prompt (teacher traffic)")
     args = ap.parse_args()
     random.seed(args.seed)
     rows, right = [], 0
     for i in range(args.count):
         raw, truth = make_address(args.v2)
         r = client.chat.completions.with_raw_response.create(
-            model=args.model, messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": raw}])
+            model=args.model, messages=[{"role": "system", "content": PROMPT}, {"role": "user", "content": raw}])
         out = r.parse().choices[0].message.content
         g = grade(out, truth)
         right += g["fully_right"]
