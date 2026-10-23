@@ -1,0 +1,442 @@
+[
+ {
+  "set": "seen streets",
+  "input": "Flat 3  ,82 Coldharbour Ln  ,brixton  ,sw98lh",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "82",
+   "street": "Coldharbour Ln",
+   "area": "Brixton",
+   "postcode": "SW9 8LH"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 3 116 Walworth road Elephant and Castle london se17 1je",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "116",
+   "street": "Walworth Rd",
+   "area": "Elephant and Castle",
+   "postcode": "SE17 1JE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B 225a Churchill Pl Canary Wharf London e14 5re",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "225a",
+   "street": "Churchill Pl",
+   "area": "Canary Wharf",
+   "postcode": "E14 5RE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "108b Northampton Sq, Clerkenwell, EC1V 0HB",
+  "truth": {
+   "flat": null,
+   "number": "108b",
+   "street": "Northampton Sq",
+   "area": "Clerkenwell",
+   "postcode": "EC1V 0HB"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B  ,124 Mare St  ,Hackney  ,e81he",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "124",
+   "street": "Mare St",
+   "area": "Hackney",
+   "postcode": "E8 1HE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "top floor flat 207b Uxbridge Rd Shepherd's Bush london W128LJ",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "207b",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "212b Uxbridge Rd Shepherd's Bush w12 8lj",
+  "truth": {
+   "flat": null,
+   "number": "212b",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B 109b Mare St hackney e8 1he",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "109b",
+   "street": "Mare St",
+   "area": "Hackney",
+   "postcode": "E8 1HE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 3  ,157 coldharbour ln  ,Brixton  ,SW9 8LH",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "157",
+   "street": "Coldharbour Ln",
+   "area": "Brixton",
+   "postcode": "SW9 8LH"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Top Floor Flat, 177 northampton sq, Clerkenwell, London, EC1V0HB",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "177",
+   "street": "Northampton Sq",
+   "area": "Clerkenwell",
+   "postcode": "EC1V 0HB"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "39 uxbridge rd Shepherd's Bush w12 8lj",
+  "truth": {
+   "flat": null,
+   "number": "39",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 14, 122a upper st, islington, London, n10ny",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "122a",
+   "street": "Upper St",
+   "area": "Islington",
+   "postcode": "N1 0NY"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 14  ,103 Coldharbour Ln  ,Brixton  ,London  ,SW98LH",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "103",
+   "street": "Coldharbour Ln",
+   "area": "Brixton",
+   "postcode": "SW9 8LH"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B 42 uxbridge road Shepherd's Bush london w12 8lj",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "42",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Top Floor Flat, 31a Mare St, Hackney, London, E81HE",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "31a",
+   "street": "Mare St",
+   "area": "Hackney",
+   "postcode": "E8 1HE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 14  ,203 Mare St  ,Hackney  ,e8 1he",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "203",
+   "street": "Mare St",
+   "area": "Hackney",
+   "postcode": "E8 1HE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 3, 176 kilburn high rd, kilburn, NW66JP",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "176",
+   "street": "Kilburn High Rd",
+   "area": "Kilburn",
+   "postcode": "NW6 6JP"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "66b churchill pl, Canary Wharf, London, E14 5RE",
+  "truth": {
+   "flat": null,
+   "number": "66b",
+   "street": "Churchill Pl",
+   "area": "Canary Wharf",
+   "postcode": "E14 5RE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "158 Uxbridge Rd  ,Shepherd's Bush  ,w12 8lj",
+  "truth": {
+   "flat": null,
+   "number": "158",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "basement flat 100a Kilburn High road Kilburn NW6 6JP",
+  "truth": {
+   "flat": "Basement Flat",
+   "number": "100a",
+   "street": "Kilburn High Rd",
+   "area": "Kilburn",
+   "postcode": "NW6 6JP"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 14, 232 northampton sq, Clerkenwell, London, ec1v 0hb",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "232",
+   "street": "Northampton Sq",
+   "area": "Clerkenwell",
+   "postcode": "EC1V 0HB"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "basement flat  ,107b Uxbridge Rd  ,Shepherd's Bush  ,w128lj",
+  "truth": {
+   "flat": "Basement Flat",
+   "number": "107b",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B 59 Churchill Pl Canary Wharf e14 5re",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "59",
+   "street": "Churchill Pl",
+   "area": "Canary Wharf",
+   "postcode": "E14 5RE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 14, 210a kilburn high road, kilburn, London, nw6 6jp",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "210a",
+   "street": "Kilburn High Rd",
+   "area": "Kilburn",
+   "postcode": "NW6 6JP"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "60a Kilburn High Rd Kilburn london nw66jp",
+  "truth": {
+   "flat": null,
+   "number": "60a",
+   "street": "Kilburn High Rd",
+   "area": "Kilburn",
+   "postcode": "NW6 6JP"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 3 91b churchill pl Canary Wharf London e145re",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "91b",
+   "street": "Churchill Pl",
+   "area": "Canary Wharf",
+   "postcode": "E14 5RE"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Top Floor Flat  ,98 Northampton Sq  ,clerkenwell  ,london  ,ec1v 0hb",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "98",
+   "street": "Northampton Sq",
+   "area": "Clerkenwell",
+   "postcode": "EC1V 0HB"
+  }
+ },
+ {
+  "set": "seen streets",
+  "input": "Top Floor Flat 49 Station Rd Harrow ha12rt",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "49",
+   "street": "Station Rd",
+   "area": "Harrow",
+   "postcode": "HA1 2RT"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "flat 2b, 8 Holloway road, Holloway, N7 6PA",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "8",
+   "street": "Holloway Rd",
+   "area": "Holloway",
+   "postcode": "N7 6PA"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "19b Kingsland Rd dalston e8 4aa",
+  "truth": {
+   "flat": null,
+   "number": "19b",
+   "street": "Kingsland Rd",
+   "area": "Dalston",
+   "postcode": "E8 4AA"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "Flat 14 89 Electric avenue Brixton SW9 8JX",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "89",
+   "street": "Electric Ave",
+   "area": "Brixton",
+   "postcode": "SW9 8JX"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "Top Floor Flat, 104a Portobello Rd, Notting Hill, W111LJ",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "104a",
+   "street": "Portobello Rd",
+   "area": "Notting Hill",
+   "postcode": "W11 1LJ"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "Flat 14, 169 lordship ln, east dulwich, London, se22 8hn",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "169",
+   "street": "Lordship Ln",
+   "area": "East Dulwich",
+   "postcode": "SE22 8HN"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "Top Floor Flat 163b Lordship Ln East Dulwich SE22 8HN",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "163b",
+   "street": "Lordship Ln",
+   "area": "East Dulwich",
+   "postcode": "SE22 8HN"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "Flat 14, 133 Lordship lane, East Dulwich, se22 8hn",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "133",
+   "street": "Lordship Ln",
+   "area": "East Dulwich",
+   "postcode": "SE22 8HN"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "206b Lordship Ln, East Dulwich, London, se22 8hn",
+  "truth": {
+   "flat": null,
+   "number": "206b",
+   "street": "Lordship Ln",
+   "area": "East Dulwich",
+   "postcode": "SE22 8HN"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "basement flat, 21 Holloway Rd, Holloway, N7 6PA",
+  "truth": {
+   "flat": "Basement Flat",
+   "number": "21",
+   "street": "Holloway Rd",
+   "area": "Holloway",
+   "postcode": "N7 6PA"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "151 Electric avenue brixton London SW9 8JX",
+  "truth": {
+   "flat": null,
+   "number": "151",
+   "street": "Electric Ave",
+   "area": "Brixton",
+   "postcode": "SW9 8JX"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "Basement Flat 156b Kingsland road Dalston e84aa",
+  "truth": {
+   "flat": "Basement Flat",
+   "number": "156b",
+   "street": "Kingsland Rd",
+   "area": "Dalston",
+   "postcode": "E8 4AA"
+  }
+ },
+ {
+  "set": "new streets",
+  "input": "188b Kingsland Rd Dalston E84AA",
+  "truth": {
+   "flat": null,
+   "number": "188b",
+   "street": "Kingsland Rd",
+   "area": "Dalston",
+   "postcode": "E8 4AA"
+  }
+ }
+]

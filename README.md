@@ -1,0 +1,52 @@
+# Mind the Gap
+
+**Built in SF. Fixed in London.**
+
+Big AI models are trained in San Francisco. Ask one to split up a messy London address and it gets the house style wrong most of the time: "Mare Street" instead of "Mare St", "2b" instead of "Flat 2B", "Hackney, London" as the area. Every UK company that uses these models ends up fixing the same mistakes by hand.
+
+Mind the Gap turns those fixes into a London model. The app sends its calls through [Mubit](https://mubit.ai) with one base URL change. The London ops team rates replies in the Mubit console (Good, or Bad with what to fix). Once a task has enough kept examples, Mubit trains a small open model on it automatically.
+
+Built at Night Shift, the Mubit hackathon, Canary Wharf, October 2026.
+
+## Results so far
+
+40 fresh London addresses that were never used for training. 12 of them are on streets the London model has never seen.
+
+| Model | Fully right | Every field | New streets | Median reply |
+|---|---|---|---|---|
+| GPT-4.1 mini (SF) | see `results/` after running `eval_sf.py` | | | |
+| GPT-6 Sol (SF frontier) | see `results/` after running `eval_sf.py` | | | |
+| **London model v1** (Qwen3 4B + Mubit adapter) | **75%** | **94%** | 58% | 792 ms |
+
+Across 260 training calls, GPT-4.1 mini got about 22% of addresses fully right.
+
+How v1 was made: 260 calls through Mubit, and about 240 of the replies rated in the console. 53 were Good, the rest Bad with a comment saying exactly what to fix. Mubit kept 43 examples, trained a Qwen3 4B adapter and scored it 100% on its own held-out test before putting it on a silent test.
+
+Its main remaining miss: when the input says "road", it writes "Road" instead of abbreviating to "Rd". That's the next round of corrections (v2).
+
+## Run it
+
+You need Python 3.10+ and a Mubit key for this project.
+
+```powershell
+git clone https://github.com/ekjots1ngh/mind-the-gap
+cd mind-the-gap
+pip install openai
+$env:MUBIT_API_KEY="your mubit key"    # or copy .env.example to .env and fill it in
+python eval_sf.py                      # scores the SF models on the test set
+python app.py                          # demo app at http://localhost:8000
+```
+
+## What's in here
+
+| File | What it does |
+|---|---|
+| `app.py`, `static/index.html` | The demo app: ask the SF model about an address, see each gap highlighted, copy the correction for Mubit, and the scoreboard |
+| `house_style.py` | The gap detector. Checks any parsed address against London house style, no right answer needed |
+| `grader.py` | Scores a reply against the true answer, field by field |
+| `testset.json`, `make_testset.py` | The 40 fresh test addresses (seed 2026) |
+| `eval_sf.py` | Runs the test set through the SF models via Mubit and saves `results/` |
+| `send_batch.py` | Sends training traffic for the task (same instructions every time, so Mubit groups it) |
+| `results/` | Scored answers for each model |
+
+Never commit your Mubit key. `.env` is in `.gitignore`.
