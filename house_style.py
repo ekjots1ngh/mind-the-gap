@@ -24,9 +24,32 @@ def _badly_capitalised(value):
     return False
 
 
-def check(fields, raw_reply=""):
+POSTCODE_IN_TEXT = re.compile(r"\b[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}\b", re.I)
+FLAT_NUMBER_IN_TEXT = re.compile(r"(?<!floor )(?<!basement )\bflat\s+\d+[a-z]?\b", re.I)
+HOUSE_NUMBER_IN_TEXT = re.compile(r"\b\d{1,4}[a-z]?\b", re.I)
+
+
+def house_number_in(address):
+    """Best guess at the house number in a raw address, e.g. '207b'."""
+    text = POSTCODE_IN_TEXT.sub(" ", address)
+    text = FLAT_NUMBER_IN_TEXT.sub(" ", text)
+    found = HOUSE_NUMBER_IN_TEXT.findall(text)
+    return found[0].lower() if found else None
+
+
+def check(fields, raw_reply="", address=None):
     """Return a list of {field, problem} for anything that breaks house style."""
     gaps = []
+    expected_number = house_number_in(address) if address else None
+    if expected_number:
+        number = fields.get("number")
+        if not number:
+            gaps.append({"field": "number", "problem": f'house number is missing: "{expected_number}"'})
+        elif number.lower() != expected_number:
+            gaps.append({"field": "number", "problem": f'should be "{expected_number}"'})
+        flat = fields.get("flat")
+        if flat and expected_number in flat.lower().split():
+            gaps.append({"field": "flat", "problem": f'take "{expected_number}" out, that\'s the house number'})
     if "```" in (raw_reply or ""):
         gaps.append({"field": "format", "problem": "return plain JSON with no code fences"})
     street = fields.get("street")

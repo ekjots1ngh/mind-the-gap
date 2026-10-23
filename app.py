@@ -54,6 +54,24 @@ def scoreboard():
     return {"models": boards, "compare_url": MUBIT_COMPARE_URL}
 
 
+def _key(address):
+    return " ".join(address.lower().replace(",", " ").split())
+
+
+TRUTH = {_key(t["input"]): t["truth"] for t in json.loads((ROOT / "testset.json").read_text(encoding="utf-8"))}
+
+
+def gaps_against_truth(fields, reply, truth):
+    gaps = []
+    if "```" in (reply or ""):
+        gaps.append({"field": "format", "problem": "return plain JSON with no code fences"})
+    for k in FIELDS:
+        if fields.get(k) != truth[k]:
+            want = "none" if truth[k] is None else f'"{truth[k]}"'
+            gaps.append({"field": k, "problem": f"should be {want}"})
+    return gaps
+
+
 def parse_address(address):
     start = time.time()
     raw = client.chat.completions.with_raw_response.create(
@@ -63,11 +81,15 @@ def parse_address(address):
     reply = raw.parse().choices[0].message.content
     ms = round((time.time() - start) * 1000)
     fields, _ = parse_reply(reply)
-    fields = {k: (fields or {}).get(k) for k in FIELDS}
-    gaps = check(fields, reply)
+    fields = {k: ((fields or {}).get(k) or None) for k in FIELDS}
+    truth = TRUTH.get(_key(address))
+    if truth:
+        gaps, checked = gaps_against_truth(fields, reply, truth), "checked against the true answer"
+    else:
+        gaps, checked = check(fields, reply, address), "checked against London house style rules"
     comment = "; ".join(f'{g["field"]}: {g["problem"]}' for g in gaps)
     return {"model": SF_MODEL, "reply": reply, "fields": fields, "gaps": gaps, "comment": comment,
-            "ms": ms, "request_id": raw.headers.get("x-middleware-request-id")}
+            "checked": checked, "ms": ms, "request_id": raw.headers.get("x-middleware-request-id")}
 
 
 class Handler(BaseHTTPRequestHandler):

@@ -134,7 +134,7 @@ async function ask() {
       <div class="verdict">${n ? `${n} gap${n > 1 ? "s" : ""} found. The SF model doesn't know London house style.` : "No gaps. This one's right."}</div>
       ${n ? `<div class="correction"><code id="corr">${esc(d.comment)}</code><button class="ghost" id="copy">Copy correction</button></div>
       <p class="meta">Paste this into the reply's Bad rating in the Mubit console. That's the correction Mubit learns from.</p>` : ""}
-      <p class="meta">${esc(d.model)} via Mubit · ${d.ms} ms · request ${esc(d.request_id)}</p>`;
+      <p class="meta">${esc(d.model)} via Mubit · ${d.ms} ms · ${esc(d.checked)} · request ${esc(d.request_id)}</p>`;
     if (n) $("copy").onclick = () => navigator.clipboard.writeText(d.comment).then(() => ($("copy").textContent = "Copied"));
   } catch (e) {
     $("out").innerHTML = `<p class="err">${esc(e.message)}</p>`;
