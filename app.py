@@ -27,7 +27,10 @@ MUBIT_COMPARE_URL = ("https://app.mubit.ai/console/projects/ws-5c5d9ea2c41261c1/
 LABELS = {
     "gpt-4.1-mini": ("GPT-4.1 mini", "SF model, the one the app used to call"),
     "gpt-6-sol": ("GPT-6 Sol", "SF frontier model"),
+    "gpt-4.1-mini+rules": ("GPT-4.1 mini + written rules", "SF model with the house rules pasted into its prompt"),
+    "gpt-6-sol+rules": ("GPT-6 Sol + written rules", "SF frontier model with the house rules pasted into its prompt"),
     "london-qwen3-4b-v1": ("London model v1", "Qwen3 4B + Mubit adapter, trained on our corrections"),
+    "london-qwen3-4b-v2": ("London model v2", "Qwen3 4B + Mubit adapter, after the v2 round of corrections"),
 }
 
 
@@ -49,7 +52,7 @@ def scoreboard():
             "new": round(100 * sum(r["fully_right"] for r in new) / len(new)) if new else None,
             "median_ms": round(statistics.median(r["ms"] for r in rows)),
         })
-    order = {"gpt-4.1-mini": 0, "gpt-6-sol": 1}
+    order = {"gpt-4.1-mini": 0, "gpt-6-sol": 1, "gpt-4.1-mini+rules": 2, "gpt-6-sol+rules": 3, "london-qwen3-4b-v1": 4, "london-qwen3-4b-v2": 5}
     boards.sort(key=lambda b: order.get(b["id"], 9))
     return {"models": boards, "compare_url": MUBIT_COMPARE_URL}
 

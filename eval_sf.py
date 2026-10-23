@@ -2,7 +2,8 @@
 
 Usage (PowerShell):
     $env:MUBIT_API_KEY="your mubit key"
-    python eval_sf.py
+    python eval_sf.py            # short instructions, like the real app
+    python eval_sf.py --rules    # fairness check: house rules written into the prompt
 
 Writes results/<model>.json and prints a scoreboard.
 """
@@ -15,9 +16,14 @@ from pathlib import Path
 
 from openai import OpenAI
 
-from grader import SYSTEM_PROMPT, grade
+import sys
+
+from grader import HOUSE_RULES, SYSTEM_PROMPT, grade
 
 MODELS = ["gpt-4.1-mini", "gpt-6-sol"]
+# python eval_sf.py --rules  writes the house rules into the prompt (the fairness check)
+WITH_RULES = "--rules" in sys.argv
+PROMPT = SYSTEM_PROMPT + HOUSE_RULES if WITH_RULES else SYSTEM_PROMPT
 
 
 def load_key():
@@ -41,7 +47,7 @@ def run_one(model, t):
     try:
         raw = client.chat.completions.with_raw_response.create(
             model=model,
-            messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": t["input"]}],
+            messages=[{"role": "system", "content": PROMPT}, {"role": "user", "content": t["input"]}],
         )
         resp = raw.parse()
         reply = resp.choices[0].message.content
@@ -73,6 +79,7 @@ if __name__ == "__main__":
     for model in MODELS:
         with ThreadPoolExecutor(max_workers=8) as pool:
             rows = list(pool.map(lambda t: run_one(model, t), tests))
-        Path(f"results/{model}.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
-        summarise(model, rows)
+        name = model + ("+rules" if WITH_RULES else "")
+        Path(f"results/{name}.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
+        summarise(name, rows)
     print("\nSaved results/. Paste these lines back to Claude.")

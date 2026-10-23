@@ -7,6 +7,7 @@ in the Mubit console (Good, or Bad with a comment saying what to fix).
 Usage (PowerShell):
     $env:MUBIT_API_KEY="your mubit key"
     python send_batch.py --seed 8 --count 120 --out batch2.csv
+    python send_batch.py --v2 --seed 21 --count 120 --model gpt-6-sol --out v2_batch.csv
 """
 import argparse
 import csv
@@ -23,18 +24,28 @@ STREETS = [("Churchill Pl", "Canary Wharf", "E14 5RE"), ("Mare St", "Hackney", "
            ("Northampton Sq", "Clerkenwell", "EC1V 0HB"), ("Station Rd", "Harrow", "HA1 2RT")]
 
 
-def messy(s):
-    s = s.replace(" Rd", " road").replace(" St", " street") if random.random() < 0.4 else s
+V2_WORDS = {" Rd": [" road", " Road"], " St": [" street", " Street"], " Ln": [" lane", " Lane"],
+            " Pl": [" place", " Place"], " Sq": [" square", " Square"]}
+
+
+def messy(s, v2=False):
+    if v2:
+        # v2 round: the street is always written out in full, the exact gap v1 still has
+        for short, longs in V2_WORDS.items():
+            if s.endswith(short):
+                s = s[: -len(short)] + random.choice(longs)
+    elif random.random() < 0.4:
+        s = s.replace(" Rd", " road").replace(" St", " street")
     return s.lower() if random.random() < 0.3 else s
 
 
-def make_address():
+def make_address(v2=False):
     flat = random.choice(FLATS)
     num = str(random.randint(1, 240)) + random.choice(["", "", "a", "b"])
     street, area, pc = random.choice(STREETS)
     pc_messy = random.choice([pc, pc.replace(" ", ""), pc.lower(), pc.lower().replace(" ", "")])
     parts = [p for p in [flat, f"{num} {street}", area, "London" if random.random() < 0.5 else None, pc_messy] if p]
-    raw = random.choice([", ", " ", "  ,"]).join(messy(p) for p in parts)
+    raw = random.choice([", ", " ", "  ,"]).join(messy(p, v2) for p in parts)
     return raw, {"flat": flat, "number": num, "street": street, "area": area, "postcode": pc}
 
 
@@ -44,11 +55,12 @@ if __name__ == "__main__":
     ap.add_argument("--count", type=int, default=40)
     ap.add_argument("--model", default="gpt-4.1-mini")
     ap.add_argument("--out", default="batch.csv")
+    ap.add_argument("--v2", action="store_true", help="always write the street out in full (road, lane, square...)")
     args = ap.parse_args()
     random.seed(args.seed)
     rows, right = [], 0
     for i in range(args.count):
-        raw, truth = make_address()
+        raw, truth = make_address(args.v2)
         r = client.chat.completions.with_raw_response.create(
             model=args.model, messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": raw}])
         out = r.parse().choices[0].message.content

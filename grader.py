@@ -16,6 +16,15 @@ SYSTEM_PROMPT = (
 )
 
 
+HOUSE_RULES = (
+    " House style: keep street abbreviations and abbreviate full words (Road to Rd, Street to St, Lane to Ln, "
+    "Avenue to Ave, Place to Pl, Square to Sq). Flat is the full label, e.g. \"Flat 2B\", \"Basement Flat\", "
+    "\"Top Floor Flat\", or null. Number is the house number only with a lowercase letter, e.g. \"155a\". "
+    "Area is the neighbourhood only, e.g. \"Hackney\", never \"London\". Proper capitals everywhere. "
+    "Plain JSON, no code fences."
+)
+
+
 def parse_reply(reply):
     """Return (dict or None, used_code_fences)."""
     if reply is None:
