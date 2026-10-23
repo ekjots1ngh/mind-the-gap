@@ -42,6 +42,9 @@
   .field.ok { border-color: var(--good); background: var(--good-bg); }
   .field.gap { border-color: var(--red); background: var(--bad-bg); }
   .verdict { margin-top: 16px; font-size: 18px; font-weight: 600; }
+  h3.who { margin: 22px 0 0; font-size: 16px; text-transform: uppercase; letter-spacing: .06em; color: var(--blue); }
+  h3.who.london { color: var(--red); margin-top: 28px; }
+  h3.who span { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--muted); font-size: 14px; margin-left: 8px; }
   .correction { margin-top: 12px; display: flex; gap: 10px; align-items: flex-start; background: var(--paper);
                 border-radius: 10px; padding: 12px 14px; }
   .correction code { flex: 1; white-space: pre-wrap; font-size: 14px; }
@@ -124,18 +127,28 @@ async function ask() {
     if (!r.ok) throw new Error(d.error || "request failed");
     const byField = {};
     d.gaps.forEach(g => (byField[g.field] = byField[g.field] || []).push(g.problem));
-    const cards = FIELDS.map(k => {
-      const probs = byField[k] || [];
-      return `<div class="field ${probs.length ? "gap" : "ok"}"><div class="k">${k}</div>
-        <div class="v">${d.fields[k] === null ? "<i>none</i>" : esc(d.fields[k])}</div>
-        ${probs.map(p => `<div class="p">${esc(p)}</div>`).join("")}</div>`;
-    }).join("");
+    const grid = (fields, gaps) => {
+      const by = {};
+      gaps.forEach(g => (by[g.field] = by[g.field] || []).push(g.problem));
+      return `<div class="fields">${FIELDS.map(k => {
+        const probs = by[k] || [];
+        return `<div class="field ${probs.length ? "gap" : "ok"}"><div class="k">${k}</div>
+          <div class="v">${fields[k] === null ? "<i>none</i>" : esc(fields[k])}</div>
+          ${probs.map(p => `<div class="p">${esc(p)}</div>`).join("")}</div>`;
+      }).join("")}</div>`;
+    };
     const n = d.gaps.length;
-    $("out").innerHTML = `<div class="fields">${cards}</div>
+    const L = d.london;
+    const londonBlock = L ? `<h3 class="who london">${esc(L.label)} <span>Qwen3 4B, answer recorded in Mubit · ${L.ms} ms</span></h3>
+      ${grid(L.fields, L.gaps)}
+      <div class="verdict">${L.gaps.length ? `${L.gaps.length} gap${L.gaps.length > 1 ? "s" : ""} for the London model.` : "The London model gets this one right."}</div>` : "";
+    $("out").innerHTML = `<h3 class="who">SF model <span>${esc(d.model)} live via Mubit · ${d.ms} ms</span></h3>
+      ${grid(d.fields, d.gaps)}
       <div class="verdict">${n ? `${n} gap${n > 1 ? "s" : ""} found. The SF model doesn't know London house style.` : "No gaps. This one's right."}</div>
       ${n ? `<div class="correction"><code id="corr">${esc(d.comment)}</code><button class="ghost" id="copy">Copy correction</button></div>
       <p class="meta">Paste this into the reply's Bad rating in the Mubit console. That's the correction Mubit learns from.</p>` : ""}
-      <p class="meta">${esc(d.model)} via Mubit · ${d.ms} ms · ${esc(d.checked)} · request ${esc(d.request_id)}</p>`;
+      <p class="meta">${esc(d.checked)} · SF request ${esc(d.request_id)}</p>
+      ${londonBlock}`;
     if (n) $("copy").onclick = () => navigator.clipboard.writeText(d.comment).then(() => ($("copy").textContent = "Copied"));
   } catch (e) {
     $("out").innerHTML = `<p class="err">${esc(e.message)}</p>`;

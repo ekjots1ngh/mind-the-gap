@@ -80,6 +80,29 @@ def gaps_against_truth(fields, reply, truth):
     return gaps
 
 
+def _recorded_london_answers():
+    """London model replies recorded in Mubit's Try models page, keyed by address."""
+    out = {}
+    for f in sorted((ROOT / "results").rglob("london-*.json")):
+        label = LABELS.get(f.stem, (f.stem, ""))[0]
+        for r in json.loads(f.read_text(encoding="utf-8")):
+            out.setdefault(_key(r["input"]), {"label": label, "reply": r["reply"], "ms": r["ms"]})
+    return out
+
+
+LONDON = _recorded_london_answers()
+
+
+def london_answer(address, truth):
+    rec = LONDON.get(_key(address))
+    if not rec:
+        return None
+    fields, _ = parse_reply(rec["reply"])
+    fields = {k: ((fields or {}).get(k) or None) for k in FIELDS}
+    return {"label": rec["label"], "fields": fields, "ms": rec["ms"],
+            "gaps": gaps_against_truth(fields, rec["reply"], truth) if truth else check(fields, rec["reply"], address)}
+
+
 def parse_address(address):
     start = time.time()
     raw = client.chat.completions.with_raw_response.create(
@@ -97,7 +120,8 @@ def parse_address(address):
         gaps, checked = check(fields, reply, address), "checked against London house style rules"
     comment = "; ".join(f'{g["field"]}: {g["problem"]}' for g in gaps)
     return {"model": SF_MODEL, "reply": reply, "fields": fields, "gaps": gaps, "comment": comment,
-            "checked": checked, "ms": ms, "request_id": raw.headers.get("x-middleware-request-id")}
+            "checked": checked, "ms": ms, "request_id": raw.headers.get("x-middleware-request-id"),
+            "london": london_answer(address, truth)}
 
 
 class Handler(BaseHTTPRequestHandler):
