@@ -188,7 +188,7 @@
  },
  {
   "set": "seen streets",
-  "input": "93a streetation road, harrow, HA1 2RT",
+  "input": "93a station road, harrow, HA1 2RT",
   "truth": {
    "flat": null,
    "number": "93a",

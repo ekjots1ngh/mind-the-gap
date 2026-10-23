@@ -11,6 +11,7 @@ Usage (PowerShell):
     python send_batch.py --rules --seed 31 --count 60 --out teach_a.csv   # teacher traffic for the rules task
 """
 import argparse
+import re
 import csv
 import json
 import random
@@ -36,7 +37,7 @@ def messy(s, v2=False):
             if s.endswith(short):
                 s = s[: -len(short)] + random.choice(longs)
     elif random.random() < 0.4:
-        s = s.replace(" Rd", " road").replace(" St", " street")
+        s = re.sub(r" Rd\b", " road", s); s = re.sub(r" St\b", " street", s)
     return s.lower() if random.random() < 0.3 else s
 
 

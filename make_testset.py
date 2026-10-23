@@ -1,4 +1,4 @@
-import json, random, sys
+import json, random, re, sys
 SEED = int(sys.argv[1]) if len(sys.argv) > 1 else 2026
 OUT = sys.argv[2] if len(sys.argv) > 2 else "testset.json"
 random.seed(SEED)
@@ -10,7 +10,7 @@ seen = [("Churchill Pl","Canary Wharf","E14 5RE"),("Mare St","Hackney","E8 1HE")
 unseen = [("Electric Ave","Brixton","SW9 8JX"),("Portobello Rd","Notting Hill","W11 1LJ"),("Kingsland Rd","Dalston","E8 4AA"),
           ("Lordship Ln","East Dulwich","SE22 8HN"),("Holloway Rd","Holloway","N7 6PA")]
 def messy(s):
-    s = s.replace(" Rd"," road").replace(" St"," street").replace(" Ln"," lane").replace(" Ave"," avenue") if random.random()<0.4 else s
+    s = re.sub(r" Ave\b"," avenue",re.sub(r" Ln\b"," lane",re.sub(r" St\b"," street",re.sub(r" Rd\b"," road",s)))) if random.random()<0.4 else s
     return s.lower() if random.random()<0.3 else s
 def make(streets, n, tag):
     out = []
