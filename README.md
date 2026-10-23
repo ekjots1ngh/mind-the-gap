@@ -17,14 +17,26 @@ Built at Night Shift, the Mubit hackathon, Canary Wharf, October 2026.
 | GPT-4.1 mini (SF) | 30% | 79% | 33% | 960 ms |
 | GPT-6 Sol (SF frontier) | 25% | 75% | 42% | 1,431 ms |
 | **London model v1** (Qwen3 4B + Mubit adapter) | **75%** | **94%** | **58%** | **792 ms** |
+| GPT-4.1 mini + written house rules | 100% | 100% | 100% | 794 ms |
+| GPT-6 Sol + written house rules | 100% | 100% | 100% | 1,326 ms |
 
-A 4 billion parameter model trained on London corrections gets three times as many addresses fully right as the SF frontier model, and answers almost twice as fast.
+With only the short instructions the app really uses, a 4 billion parameter model trained on London corrections gets three times as many addresses fully right as the SF frontier model. Across 260 training calls, GPT-4.1 mini got about 22% fully right.
 
-Across 260 training calls, GPT-4.1 mini got about 22% of addresses fully right.
+The fairness check matters too: once the house rules are written into the prompt, both SF models get every address right. So corrections are how you capture rules nobody has written down, and when you can write them down, the big model gets them right but you rent it on every call.
 
-How v1 was made: 260 calls through Mubit, and about 240 of the replies rated in the console. 53 were Good, the rest Bad with a comment saying exactly what to fix. Mubit kept 43 examples, trained a Qwen3 4B adapter and scored it 100% on its own held-out test before putting it on a silent test.
+## How the London models were made
 
-Its main remaining miss: when the input says "road", it writes "Road" instead of abbreviating to "Rd". That's the next round of corrections (v2).
+**v1, learned from corrections.** 260 calls through Mubit with the short instructions, and about 240 of the replies rated in the console: 53 Good, the rest Bad with a comment saying exactly what to fix. Mubit kept 43 examples, trained a Qwen3 4B adapter, scored it 100% on its own held-out check and put it on a silent test. Its main remaining miss: when the input says "road", it writes "Road" instead of "Rd".
+
+**v2, taught by GPT.** Sending more "road" addresses with the short instructions got 0 of 120 right, so there was nothing Good to learn the fix from. Instead, GPT-4.1 mini with the written rules answered 140 training addresses (127 right). We rated those in the console and Mubit trains a small model on them: the big model teaches, you own the student. Scored on a second fresh test set (`testset2.json`), results coming.
+
+## What we learned about Mubit
+
+- Tasks are grouped by instructions and by model: the same prompt on GPT-4.1 mini and GPT-6 Sol became two tasks with two adapters.
+- Mubit's own rater keeps replies automatically, up to 200 ratings a day per project (`adapters.rate.max_per_day`). After that, new calls wait for the next day.
+- An adapter retrains once a task has at least 25 new kept rows, and at least half as many as it was last trained on.
+- Ratings can only be sent from the console: project keys are either Inference or Read-only. A rating API for ops tools would let apps like this one send their team's fixes straight in.
+- Because Mubit keeps good replies on its own, test addresses must never go through the API before the model you're testing has trained. We score adapters in the console's Try models page, which doesn't store or train on anything.
 
 ## Run it
 
@@ -46,9 +58,9 @@ python app.py                          # demo app at http://localhost:8000
 | `app.py`, `static/index.html` | The demo app: ask the SF model about an address, see each gap highlighted, copy the correction for Mubit, and the scoreboard |
 | `house_style.py` | The gap detector. Checks any parsed address against London house style, no right answer needed |
 | `grader.py` | Scores a reply against the true answer, field by field |
-| `testset.json`, `make_testset.py` | The 40 fresh test addresses (seed 2026) |
-| `eval_sf.py` | Runs the test set through the SF models via Mubit and saves `results/` |
-| `send_batch.py` | Sends training traffic for the task (same instructions every time, so Mubit groups it) |
+| `testset.json`, `testset2.json`, `make_testset.py` | The two fresh test sets of 40 addresses (seeds 2026 and 2027) |
+| `eval_sf.py` | Runs a test set through the SF models via Mubit (`--rules` adds the written house rules, `--set testset2.json` picks the set) and saves `results/` |
+| `send_batch.py` | Sends training traffic (`--v2` writes street names out in full, `--rules` sends teacher traffic with the written rules) |
 | `results/` | Scored answers for each model |
 
 Never commit your Mubit key. `.env` is in `.gitignore`.
