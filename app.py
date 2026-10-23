@@ -31,12 +31,16 @@ LABELS = {
     "gpt-6-sol+rules": ("GPT-6 Sol + written rules", "SF frontier model with the house rules pasted into its prompt"),
     "london-qwen3-4b-v1": ("London model v1", "Qwen3 4B + Mubit adapter, trained on our corrections"),
     "london-qwen3-4b-v2": ("London model v2", "Qwen3 4B + Mubit adapter, after the v2 round of corrections"),
+    "london-taught": ("London model, taught by GPT", "Qwen3 4B + Mubit adapter, trained on GPT-with-rules answers our team rated Good"),
 }
+ORDER = ["gpt-4.1-mini", "gpt-6-sol", "gpt-4.1-mini+rules", "gpt-6-sol+rules", "london-qwen3-4b-v1", "london-qwen3-4b-v2", "london-taught"]
+SETS = {"": "Test set 1", "testset2": "Test set 2"}
 
 
-def scoreboard():
+def scoreboard(set_name=""):
+    folder = ROOT / "results" / set_name if set_name in SETS and set_name else ROOT / "results"
     boards = []
-    for f in sorted((ROOT / "results").glob("*.json")):
+    for f in sorted(folder.glob("*.json")):
         rows = json.loads(f.read_text(encoding="utf-8"))
         if not rows:
             continue
@@ -52,16 +56,17 @@ def scoreboard():
             "new": round(100 * sum(r["fully_right"] for r in new) / len(new)) if new else None,
             "median_ms": round(statistics.median(r["ms"] for r in rows)),
         })
-    order = {"gpt-4.1-mini": 0, "gpt-6-sol": 1, "gpt-4.1-mini+rules": 2, "gpt-6-sol+rules": 3, "london-qwen3-4b-v1": 4, "london-qwen3-4b-v2": 5}
-    boards.sort(key=lambda b: order.get(b["id"], 9))
-    return {"models": boards, "compare_url": MUBIT_COMPARE_URL}
+    boards.sort(key=lambda b: ORDER.index(b["id"]) if b["id"] in ORDER else 99)
+    sets = [{"id": k, "name": v} for k, v in SETS.items() if any((ROOT / "results" / k).glob("*.json"))]
+    return {"models": boards, "compare_url": MUBIT_COMPARE_URL, "sets": sets, "set": set_name}
 
 
 def _key(address):
     return " ".join(address.lower().replace(",", " ").split())
 
 
-TRUTH = {_key(t["input"]): t["truth"] for t in json.loads((ROOT / "testset.json").read_text(encoding="utf-8"))}
+TRUTH = {_key(t["input"]): t["truth"] for f in ("testset.json", "testset2.json") if (ROOT / f).exists()
+         for t in json.loads((ROOT / f).read_text(encoding="utf-8"))}
 
 
 def gaps_against_truth(fields, reply, truth):
@@ -107,8 +112,9 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path in ("/", "/index.html"):
             return self._send(200, (ROOT / "static" / "index.html").read_bytes(), "text/html; charset=utf-8")
-        if self.path == "/api/scoreboard":
-            return self._send(200, scoreboard())
+        if self.path.startswith("/api/scoreboard"):
+            set_name = self.path.split("set=", 1)[1] if "set=" in self.path else ""
+            return self._send(200, scoreboard(set_name if set_name in SETS else ""))
         if self.path == "/api/samples":
             tests = json.loads((ROOT / "testset.json").read_text(encoding="utf-8"))
             return self._send(200, [t["input"] for t in tests[::5]])

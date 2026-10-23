@@ -93,7 +93,8 @@
 
   <section>
     <h2>2. Scoreboard on 40 fresh London addresses</h2>
-    <p class="sub">None of these were used for training. 12 of them are on streets the London model has never seen.</p>
+    <p class="sub">None of these were used for training. 12 of them are on streets the London models have never seen.</p>
+    <div class="chips" id="sets"></div>
     <div class="board" id="board">Loading…</div>
     <p class="meta" id="compare"></p>
   </section>
@@ -141,8 +142,10 @@ async function ask() {
   } finally { $("go").disabled = false; }
 }
 
-async function loadBoard() {
-  const d = await (await fetch("/api/scoreboard")).json();
+async function loadBoard(set = "") {
+  const d = await (await fetch("/api/scoreboard?set=" + encodeURIComponent(set))).json();
+  $("sets").innerHTML = d.sets.length > 1 ? d.sets.map(x => `<button class="chip" data-set="${x.id}" style="${x.id === d.set ? "background:var(--blue);color:#fff" : ""}">${esc(x.name)}</button>`).join("") : "";
+  [...$("sets").children].forEach(b => b.onclick = () => loadBoard(b.dataset.set));
   $("board").innerHTML = d.models.map(m => {
     const london = m.id.startsWith("london");
     const bar = (label, v) => v === null ? "" :
