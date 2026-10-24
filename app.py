@@ -12,14 +12,18 @@ from results/.
 """
 import json
 import statistics
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from eval_sf import client
 from grader import FIELDS, SYSTEM_PROMPT, parse_reply
-from geo import locate
+from geo import locate, normalise, peek
 from house_style import check
+
+GEO = ThreadPoolExecutor(max_workers=4)  # map lookups run beside the model call, never after it
 
 ROOT = Path(__file__).parent
 SF_MODEL = "gpt-4.1-mini"
@@ -115,7 +119,15 @@ def recorded_sf_answer(address):
     return None
 
 
+def warm_geo():
+    """Look up every test-set postcode once at start-up, so the demo never waits on the venue wifi."""
+    pcs = {normalise(t["input"]) for f in ("testset.json", "testset2.json") if (ROOT / f).exists()
+           for t in json.loads((ROOT / f).read_text(encoding="utf-8"))}
+    list(GEO.map(locate, [p for p in pcs if p]))
+
+
 def parse_address(address):
+    geo_job = GEO.submit(locate, address)
     start = time.time()
     live, request_id = True, None
     try:
@@ -139,9 +151,13 @@ def parse_address(address):
     else:
         gaps, checked = check(fields, reply, address), "checked against London house style rules"
     comment = "; ".join(f'{g["field"]}: {g["problem"]}' for g in gaps)
+    try:
+        geo = geo_job.result(timeout=2)
+    except Exception:
+        geo = peek(address)  # slow network: show the approximate spot now, the real one is cached for next time
     return {"model": SF_MODEL, "reply": reply, "fields": fields, "gaps": gaps, "comment": comment,
             "checked": checked, "ms": ms, "request_id": request_id, "live": live,
-            "london": london_answer(address, truth), "geo": locate(address)}
+            "london": london_answer(address, truth), "geo": geo}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -215,5 +231,6 @@ if __name__ == "__main__":
         server = ThreadingHTTPServer(("127.0.0.1", 8000), Handler)
     except OSError:
         raise SystemExit("Port 8000 is already in use. Close the other window running app.py, then try again.")
+    threading.Thread(target=warm_geo, daemon=True).start()
     print("Mind the Gap running at http://localhost:8000  (Ctrl+C to stop)")
     server.serve_forever()

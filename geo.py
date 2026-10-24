@@ -9,6 +9,7 @@ prepared by Oliver O'Brien (github.com/oobrien/vis).
 import json
 import math
 import re
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -33,7 +34,7 @@ _stations = None
 
 def _get(url):
     req = urllib.request.Request(url, headers={"User-Agent": "mind-the-gap-hackathon-demo"})
-    with urllib.request.urlopen(req, timeout=4) as r:
+    with urllib.request.urlopen(req, timeout=3) as r:
         return json.loads(r.read().decode())
 
 
@@ -54,23 +55,43 @@ def locate(text):
         r = _get(f"https://api.postcodes.io/postcodes/{pc.replace(' ', '')}")["result"]
         out = {"postcode": r["postcode"], "lat": r["latitude"], "lon": r["longitude"],
                "district": r.get("admin_district"), "ward": r.get("admin_ward"), "source": "postcode"}
-    except Exception:
+    except urllib.error.HTTPError:
+        # postcodes.io answered but doesn't know this postcode: use its district instead
         try:
             r = _get(f"https://api.postcodes.io/outcodes/{pc.split()[0]}")["result"]
             district = (r.get("admin_district") or [None])[0]
             out = {"postcode": pc, "lat": r["latitude"], "lon": r["longitude"],
                    "district": district, "ward": None, "source": "outcode"}
         except Exception:
-            if pc in APPROX:
-                lat, lon, district = APPROX[pc]
-                out = {"postcode": pc, "lat": lat, "lon": lon, "district": district, "ward": None,
-                       "source": "approximate"}
+            pass
+    except Exception:
+        pass  # no network or too slow: don't wait twice, fall back straight away
+    if out is None and pc in APPROX:
+        lat, lon, district = APPROX[pc]
+        out = {"postcode": pc, "lat": lat, "lon": lon, "district": district, "ward": None, "source": "approximate"}
     if out:
         st = nearest_station(out["lat"], out["lon"])
         if st:
             out["station"] = st
         _cache[pc] = out
     return out
+
+
+def peek(text):
+    """What we already know about this postcode, without touching the network."""
+    pc = normalise(text)
+    if not pc:
+        return None
+    if pc in _cache:
+        return _cache[pc]
+    if pc in APPROX:
+        lat, lon, district = APPROX[pc]
+        out = {"postcode": pc, "lat": lat, "lon": lon, "district": district, "ward": None, "source": "approximate"}
+        st = nearest_station(lat, lon)
+        if st:
+            out["station"] = st
+        return out
+    return None
 
 
 def _haversine(lat1, lon1, lat2, lon2):
