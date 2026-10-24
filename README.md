@@ -28,14 +28,17 @@ Each test set is 40 fresh addresses that were never used to train the model scor
 
 | Model | Prompt | Fully right | Every field | Median reply |
 |---|---|---|---|---|
+| GPT-4.1 mini (SF) | short | 12% | 70% | 904 ms |
+| GPT-6 Sol (SF frontier) | short | 15% | 72% | 1,572 ms |
+| GPT-4.1 mini | + written house rules | 92% | 98% | 797 ms |
+| GPT-6 Sol | + written house rules | 100% | 100% | 1,390 ms |
 | **London model, taught by GPT** (Qwen3 4B + Mubit adapter) | + written house rules | **100%** | **100%** | 603 ms* |
-| SF models | short and with rules | running | | |
 
 \* London models were timed in Mubit's Try models page, SF models through the API, so the times aren't like for like.
 
 With the short instructions the app really uses, Mubit's 4B student gets 30 of 40 addresses fully right. GPT-4.1 mini, the model whose Good answers it learned from, gets 12, and GPT-6 Sol gets 10. The student beats its teacher because ratings decide which of the teacher's answers it learns from.
 
-The fairness check matters too. Once the house rules are written into the prompt, both SF models get every address right. So we did what the "own your intelligence layer" track asks: GPT with the rules taught a 4B model. Mubit trained it on 28 of GPT-4.1 mini's answers, and it gets all 40 addresses in test set 2 right, including all 18 that write the street type out in full, which v1 never learned.
+The fairness check matters too. Once the house rules are written into the prompt, both SF models get every address in test set 1 right. So we did what the "own your intelligence layer" track asks: GPT with the rules taught a 4B model. Mubit trained it on 28 of GPT-4.1 mini's answers, and it gets all 40 addresses in test set 2 right, including all 18 that write the street type out in full, which v1 never learned. With the same rules, GPT-4.1 mini itself got 37 of 40 on that set: it split N1 0NY as "N10 NY", read "2b brick lane" as Flat 2B with no house number, and left "Flat 2b" in lower case.
 
 ## How the London models were made
 
@@ -50,6 +53,7 @@ Ratings couldn't fix "Road". GPT with the short instructions got 0 of 120 such a
 ## What this does not show
 
 - That ratings alone can teach a rule the provider never follows. v1 learned only from GPT's right answers.
+- That the taught model is better than its teacher. 40 against 37 out of 40 is too few to call; what it shows is that the 4B student keeps up.
 - Generalisation to new streets. On the unseen streets v1 got 7 of 12 against GPT-6 Sol's 5, which is too few to call. The taught model saw all 15 streets in training.
 - Cost. We haven't measured it.
 - Latency like for like. London models were timed in the playground, SF models through the API.
