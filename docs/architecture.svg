@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1120" width="1200" height="1120" role="img" aria-label="Architecture of Mind the Gap: the demo app on the laptop, Mubit's training loop, and the models and open data it uses">
+<rect width="1200" height="1120" fill="#F3EFE6"/>
+<rect width="1200" height="8" fill="#FFD100"/>
+<path d="M0 8 L14 0 L28 0 L14 8 Z" fill="#111111"/>
+<path d="M28 8 L42 0 L56 0 L42 8 Z" fill="#111111"/>
+<path d="M56 8 L70 0 L84 0 L70 8 Z" fill="#111111"/>
+<path d="M84 8 L98 0 L112 0 L98 8 Z" fill="#111111"/>
+<path d="M112 8 L126 0 L140 0 L126 8 Z" fill="#111111"/>
+<path d="M140 8 L154 0 L168 0 L154 8 Z" fill="#111111"/>
+<path d="M168 8 L182 0 L196 0 L182 8 Z" fill="#111111"/>
+<path d="M196 8 L210 0 L224 0 L210 8 Z" fill="#111111"/>
+<path d="M224 8 L238 0 L252 0 L238 8 Z" fill="#111111"/>
+<path d="M252 8 L266 0 L280 0 L266 8 Z" fill="#111111"/>
+<path d="M280 8 L294 0 L308 0 L294 8 Z" fill="#111111"/>
+<path d="M308 8 L322 0 L336 0 L322 8 Z" fill="#111111"/>
+<path d="M336 8 L350 0 L364 0 L350 8 Z" fill="#111111"/>
+<path d="M364 8 L378 0 L392 0 L378 8 Z" fill="#111111"/>
+<path d="M392 8 L406 0 L420 0 L406 8 Z" fill="#111111"/>
+<path d="M420 8 L434 0 L448 0 L434 8 Z" fill="#111111"/>
+<path d="M448 8 L462 0 L476 0 L462 8 Z" fill="#111111"/>
+<path d="M476 8 L490 0 L504 0 L490 8 Z" fill="#111111"/>
+<path d="M504 8 L518 0 L532 0 L518 8 Z" fill="#111111"/>
+<path d="M532 8 L546 0 L560 0 L546 8 Z" fill="#111111"/>
+<path d="M560 8 L574 0 L588 0 L574 8 Z" fill="#111111"/>
+<path d="M588 8 L602 0 L616 0 L602 8 Z" fill="#111111"/>
+<path d="M616 8 L630 0 L644 0 L630 8 Z" fill="#111111"/>
+<path d="M644 8 L658 0 L672 0 L658 8 Z" fill="#111111"/>
+<path d="M672 8 L686 0 L700 0 L686 8 Z" fill="#111111"/>
+<path d="M700 8 L714 0 L728 0 L714 8 Z" fill="#111111"/>
+<path d="M728 8 L742 0 L756 0 L742 8 Z" fill="#111111"/>
+<path d="M756 8 L770 0 L784 0 L770 8 Z" fill="#111111"/>
+<path d="M784 8 L798 0 L812 0 L798 8 Z" fill="#111111"/>
+<path d="M812 8 L826 0 L840 0 L826 8 Z" fill="#111111"/>
+<path d="M840 8 L854 0 L868 0 L854 8 Z" fill="#111111"/>
+<path d="M868 8 L882 0 L896 0 L882 8 Z" fill="#111111"/>
+<path d="M896 8 L910 0 L924 0 L910 8 Z" fill="#111111"/>
+<path d="M924 8 L938 0 L952 0 L938 8 Z" fill="#111111"/>
+<path d="M952 8 L966 0 L980 0 L966 8 Z" fill="#111111"/>
+<path d="M980 8 L994 0 L1008 0 L994 8 Z" fill="#111111"/>
+<path d="M1008 8 L1022 0 L1036 0 L1022 8 Z" fill="#111111"/>
+<path d="M1036 8 L1050 0 L1064 0 L1050 8 Z" fill="#111111"/>
+<path d="M1064 8 L1078 0 L1092 0 L1078 8 Z" fill="#111111"/>
+<path d="M1092 8 L1106 0 L1120 0 L1106 8 Z" fill="#111111"/>
+<path d="M1120 8 L1134 0 L1148 0 L1134 8 Z" fill="#111111"/>
+<path d="M1148 8 L1162 0 L1176 0 L1162 8 Z" fill="#111111"/>
+<path d="M1176 8 L1190 0 L1204 0 L1190 8 Z" fill="#111111"/>
+<text x="30" y="62" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="32" font-weight="700" fill="#111111">How Mind the Gap fits together</text>
+<text x="30" y="94" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="17" fill="#5E5A52">Every model call goes through Mubit. Ratings decide which replies become training rows, Mubit trains</text>
+<text x="30" y="116" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="17" fill="#5E5A52">a small open model on them, and fresh test sets score it against the SF models.</text>
+<rect x="605" y="138" width="330" height="860" rx="12" fill="#E7E0D2"/>
+<text x="30" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#5E5A52">OPEN DATA</text>
+<text x="270" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#5E5A52">ON THE LAPTOP</text>
+<text x="620" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#5E5A52">MUBIT</text>
+<text x="960" y="160" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#5E5A52">MODELS</text>
+<path d="M770.0 260 V890" fill="none" stroke="#60399E" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M415.0 260 V290" fill="none" stroke="#0019A8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M415.0 380 V410" fill="none" stroke="#0019A8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M560 335.0 H572 V190 H620" fill="none" stroke="#0019A8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M920 215.0 H960" fill="none" stroke="#0019A8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M560 695.0 H584 V215 H620" fill="none" stroke="#60399E" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M920 695.0 H960" fill="none" stroke="#9A968E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M920 815.0 H960" fill="none" stroke="#60399E" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M560 815.0 H596 V240 H620" fill="none" stroke="#007D32" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M415.0 860 V890" fill="none" stroke="#007D32" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M620 935.0 H560" fill="none" stroke="#007D32" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M230 215.0 H270" fill="none" stroke="#FA7B05" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M270 335.0 H255 V575.0 H270" fill="none" stroke="#FA7B05" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M230 575.0 H255" fill="none" stroke="#FA7B05" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="30" y="170" width="200" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="46" y="201" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">OpenFreeMap</text>
+<text x="46" y="226" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">map tiles from</text>
+<text x="46" y="246" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">OpenStreetMap data</text>
+<rect x="30" y="530" width="200" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="46" y="561" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">postcodes.io</text>
+<text x="46" y="586" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">postcode to a point</text>
+<text x="46" y="606" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">on the map</text>
+<rect x="270" y="170" width="290" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="286" y="201" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Departures board</text>
+<text x="286" y="226" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">static/index.html</text>
+<text x="286" y="246" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">MapLibre, GSAP</text>
+<rect x="270" y="290" width="290" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="286" y="321" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Demo server</text>
+<text x="286" y="346" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">app.py</text>
+<text x="286" y="366" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">/api/parse, /api/scoreboard</text>
+<rect x="270" y="410" width="290" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="286" y="441" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Gap check</text>
+<text x="286" y="466" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">house_style.py, grader.py</text>
+<text x="286" y="486" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">guards the postcode</text>
+<rect x="270" y="530" width="290" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="286" y="561" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Map lookup</text>
+<text x="286" y="586" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">geo.py, nearest station</text>
+<text x="286" y="606" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">station data from OSM</text>
+<rect x="270" y="650" width="290" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="286" y="681" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Training traffic</text>
+<text x="286" y="706" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">send_batch.py</text>
+<text x="286" y="726" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">a script rates the replies</text>
+<rect x="270" y="770" width="290" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="286" y="801" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Test sets</text>
+<text x="286" y="826" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">make_testset.py</text>
+<text x="286" y="846" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">eval_sf.py</text>
+<rect x="270" y="890" width="290" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="286" y="921" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Results</text>
+<text x="286" y="946" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">results/*.json</text>
+<text x="286" y="966" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">the scoreboard's numbers</text>
+<rect x="620" y="170" width="300" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="4"/>
+<text x="636" y="201" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Gateway</text>
+<text x="636" y="226" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">one base URL, OpenAI style</text>
+<text x="636" y="246" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">keeps every call, with an id</text>
+<rect x="620" y="290" width="300" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="636" y="321" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Tasks</text>
+<text x="636" y="346" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">calls grouped by prompt</text>
+<text x="636" y="366" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">and by model</text>
+<rect x="620" y="410" width="300" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="636" y="441" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Ratings</text>
+<text x="636" y="466" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">Mubit's rater (200 a day)</text>
+<text x="636" y="486" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">or Good / Bad in the console</text>
+<rect x="620" y="530" width="300" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="636" y="561" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Kept rows</text>
+<text x="636" y="586" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">only rows rated Good</text>
+<text x="636" y="606" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">become training data</text>
+<rect x="620" y="650" width="300" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="636" y="681" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Adapter training</text>
+<text x="636" y="706" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">Qwen3 4B, from 25 rows</text>
+<text x="636" y="726" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">refreshed at most daily</text>
+<rect x="620" y="770" width="300" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="636" y="801" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Checks and silent test</text>
+<text x="636" y="826" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">12 held-out rows, then</text>
+<text x="636" y="846" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">10% of live calls</text>
+<rect x="620" y="890" width="300" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="636" y="921" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Try models</text>
+<text x="636" y="946" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">50 calls a day</text>
+<text x="636" y="966" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">stores and trains nothing</text>
+<rect x="960" y="170" width="220" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="976" y="201" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">SF models</text>
+<text x="976" y="226" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">GPT-4.1 mini</text>
+<text x="976" y="246" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">GPT-6 Sol</text>
+<rect x="960" y="650" width="220" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="976" y="681" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">Open base model</text>
+<text x="976" y="706" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">Qwen3-4B-Instruct-2507</text>
+<text x="976" y="726" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">small, open weights</text>
+<rect x="960" y="770" width="220" height="90" rx="6" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+<text x="976" y="801" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700" fill="#111111">London models</text>
+<text x="976" y="826" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">v1: 75% on test set 1</text>
+<text x="976" y="846" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#5E5A52">taught: 100% on set 2</text>
+<circle cx="560" cy="335.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="620" cy="190" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="620" cy="215" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="620" cy="240" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="560" cy="695.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="560" cy="815.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="920" cy="215.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="960" cy="215.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="920" cy="695.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="960" cy="695.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="920" cy="815.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="960" cy="815.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="620" cy="935.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="560" cy="935.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="230" cy="215.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="270" cy="215.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="270" cy="335.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="270" cy="575.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<circle cx="230" cy="575.0" r="7" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+<path d="M30 1050 H70" stroke="#0019A8" stroke-width="8" stroke-linecap="round"/>
+<text x="82" y="1056" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="17" fill="#111111">SF line: the live call</text>
+<path d="M285 1050 H325" stroke="#60399E" stroke-width="8" stroke-linecap="round"/>
+<text x="337" y="1056" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="17" fill="#111111">London line: ratings to a model</text>
+<path d="M620 1050 H660" stroke="#007D32" stroke-width="8" stroke-linecap="round"/>
+<text x="672" y="1056" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="17" fill="#111111">Test line: fresh sets, scored</text>
+<path d="M930 1050 H970" stroke="#FA7B05" stroke-width="8" stroke-linecap="round"/>
+<text x="982" y="1056" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="17" fill="#111111">Map line: where it is</text>
+<text x="30" y="1094" font-family="'Gill Sans', 'Gill Sans MT', Seravek, 'Trebuchet MS', Arial, sans-serif" font-size="14" fill="#5E5A52">Mind the Gap, built at Night Shift, the Mubit hackathon, Canary Wharf, October 2026. Not affiliated with Transport for London.</text>
+</svg>

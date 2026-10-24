@@ -40,6 +40,43 @@ With the short instructions the app really uses, Mubit's 4B student gets 30 of 4
 
 The fairness check matters too. Once the house rules are written into the prompt, both SF models get every address in test set 1 right. So we did what the "own your intelligence layer" track asks: GPT with the rules taught a 4B model. Mubit trained it on 28 of GPT-4.1 mini's answers, and it gets all 40 addresses in test set 2 right, including all 18 that write the street type out in full, which v1 never learned. With the same rules, GPT-4.1 mini itself got 37 of 40 on that set: it split N1 0NY as "N10 NY", read "2b brick lane" as Flat 2B with no house number, and left "Flat 2b" in lower case.
 
+## How it fits together
+
+![How Mind the Gap fits together: the demo app on the laptop, Mubit's training loop, and the models and open data it uses](docs/architecture.svg)
+
+Four lines, like the map they're named after:
+
+- **SF line, the live call.** The departures board posts an address to `app.py`, which calls GPT-4.1 mini through Mubit's gateway with the OpenAI SDK. The only change from calling OpenAI directly is the base URL. The reply comes back with Mubit's request id, and `app.py` grades it against the answer key (`grader.py`) or, for anything typed in, the house style rules (`house_style.py`).
+- **London line, ratings to a model.** Mubit keeps every call as a trace and groups traces into tasks by prompt and by model. Mubit's own rater reads up to 200 new calls a day, and anyone can rate in the console: here a script with our answer key did that. Only rows rated Good become training data. Once a task has 25 of them, Mubit trains a Qwen3 4B adapter, checks it on 12 held-out rows and puts it on a silent test against the provider.
+- **Test line, fresh sets scored.** `make_testset.py` builds sets of 40 addresses that no model being scored has trained on. `eval_sf.py` sends them to the SF models through Mubit, and the London models are scored in Mubit's Try models page, which stores and trains nothing. Everything lands in `results/`, and the scoreboard reads it from there.
+- **Map line, where it is.** `geo.py` turns the postcode into a point with postcodes.io, looked up beside the model call so it never slows the reply, with offline fallbacks. It finds the nearest station in OpenStreetMap data, and the page draws it all with MapLibre on OpenFreeMap tiles.
+
+What happens when you press Depart:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant B as Departures board
+    participant A as app.py
+    participant G as geo.py
+    participant M as Mubit gateway
+    participant P as GPT-4.1 mini
+    B->>A: POST /api/parse with the address
+    par the map lookup runs beside the model call
+        A->>G: locate the postcode
+        G-->>A: point and nearest station, cached or from postcodes.io
+    and the live call
+        A->>M: chat completion through the OpenAI SDK, Mubit base URL
+        M->>P: forwards the call and keeps it as a trace
+        P-->>M: reply
+        M-->>A: reply and x-middleware-request-id
+    end
+    A->>A: grade it with the answer key, or the house style rules
+    A->>A: find the London model's recorded answer in results/
+    A-->>B: fields, gaps, correction note, request id, map point, London answer
+    B->>B: SF line ticks, map flies, London line arrives
+```
+
 ## How the London models were made
 
 **v1, learned from rated answers.** 260 calls through Mubit with GPT-4.1 mini and the short instructions. About 240 replies were rated: 53 Good, the rest Bad with a comment saying what to fix. Mubit only trains on rows rated Good. It kept 43, trained a Qwen3 4B adapter, passed it on its own check (agreement with GPT on 12 held-out rows) and put it on a silent test.
@@ -107,6 +144,7 @@ If the venue wifi drops, the app replays GPT's recorded answer for test addresse
 | `send_batch.py` | Sends training traffic (`--v2` writes street names out in full, `--rules` sends teacher traffic with the written rules) |
 | `results/` | Scored answers for each model, test set 2 in `results/testset2/` |
 | `tests/` | Tests for the grader, the gap detector and the map lookup |
+| `docs/architecture.svg`, `docs/make_architecture.py` | The architecture diagram, and the script that draws it |
 | `static/vendor`, `static/data`, `static/fonts` | MapLibre GL JS and GSAP (bundled so the demo works on venue wifi), London station and line data, fonts |
 
 Never commit your Mubit key. `.env` is in `.gitignore`.
