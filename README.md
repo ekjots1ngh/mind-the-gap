@@ -55,7 +55,9 @@ python app.py                          # demo app at http://localhost:8000
 
 | File | What it does |
 |---|---|
-| `app.py`, `static/index.html` | The demo app: ask the SF model about an address, see each gap highlighted, copy the correction for Mubit, and the scoreboard |
+| `app.py`, `static/index.html` | The demo app: ask the SF model about an address, see each field as a station that ticks green or red, copy the correction for Mubit, see the London model's answer, the map and the scoreboard |
+| `geo.py` | Finds the postcode on a map (postcodes.io, with offline fallbacks) and the nearest tube station |
+| `static/vendor`, `static/data`, `static/fonts` | MapLibre GL JS and GSAP (bundled so the demo works on venue wifi), London station and line data, fonts |
 | `house_style.py` | The gap detector. Checks any parsed address against London house style, no right answer needed |
 | `grader.py` | Scores a reply against the true answer, field by field |
 | `testset.json`, `testset2.json`, `make_testset.py` | The two fresh test sets of 40 addresses (seeds 2026 and 2027) |
@@ -64,3 +66,7 @@ python app.py                          # demo app at http://localhost:8000
 | `results/` | Scored answers for each model |
 
 Never commit your Mubit key. `.env` is in `.gitignore`.
+
+## Credits
+
+Not affiliated with Transport for London. Map tiles from OpenFreeMap and OpenMapTiles, © OpenStreetMap contributors. Postcode lookups by postcodes.io: contains OS data © Crown copyright and database right, Royal Mail data © Royal Mail copyright and database right, and National Statistics data © Crown copyright and database right (Office for National Statistics, Open Government Licence v3.0). Station and line data © OpenStreetMap contributors (ODbL), prepared by Oliver O'Brien. Maps drawn with MapLibre GL JS (BSD-3-Clause), animation by GSAP, fonts Doto, IBM Plex Mono and Josefin Sans (SIL Open Font License).

@@ -18,6 +18,7 @@ from pathlib import Path
 
 from eval_sf import client
 from grader import FIELDS, SYSTEM_PROMPT, parse_reply
+from geo import locate
 from house_style import check
 
 ROOT = Path(__file__).parent
@@ -121,7 +122,7 @@ def parse_address(address):
     comment = "; ".join(f'{g["field"]}: {g["problem"]}' for g in gaps)
     return {"model": SF_MODEL, "reply": reply, "fields": fields, "gaps": gaps, "comment": comment,
             "checked": checked, "ms": ms, "request_id": raw.headers.get("x-middleware-request-id"),
-            "london": london_answer(address, truth)}
+            "london": london_answer(address, truth), "geo": locate(address)}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -133,7 +134,30 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
+    MIME = {".html": "text/html; charset=utf-8", ".js": "text/javascript", ".mjs": "text/javascript",
+            ".css": "text/css", ".json": "application/json", ".woff2": "font/woff2", ".svg": "image/svg+xml",
+            ".png": "image/png", ".txt": "text/plain; charset=utf-8"}
+
+    def _static(self):
+        rel = self.path.split("?", 1)[0][len("/static/"):]
+        target = (ROOT / "static" / rel).resolve()
+        if not str(target).startswith(str((ROOT / "static").resolve())) or not target.is_file():
+            return self._send(404, {"error": "not found"})
+        self.send_response(200)
+        data = target.read_bytes()
+        self.send_header("Content-Type", self.MIME.get(target.suffix, "application/octet-stream"))
+        self.send_header("Content-Length", str(len(data)))
+        self.send_header("Cache-Control", "max-age=3600")
+        self.end_headers()
+        self.wfile.write(data)
+
     def do_GET(self):
+        if self.path.startswith("/static/"):
+            return self._static()
+        if self.path.startswith("/api/geo"):
+            pc = self.path.split("pc=", 1)[1] if "pc=" in self.path else ""
+            from urllib.parse import unquote
+            return self._send(200, locate(unquote(pc)) or {})
         if self.path in ("/", "/index.html"):
             return self._send(200, (ROOT / "static" / "index.html").read_bytes(), "text/html; charset=utf-8")
         if self.path.startswith("/api/scoreboard"):
