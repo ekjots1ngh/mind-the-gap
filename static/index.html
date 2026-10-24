@@ -29,10 +29,8 @@
   /* header */
   header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap;
            padding: 26px 48px 18px; border-bottom: 3px solid var(--rule); }
-  .mark { display: flex; align-items: center; gap: 16px; }
-  .gapmark { display: flex; align-items: center; gap: 9px; }
-  .gapmark i { display: block; width: 34px; height: 12px; }
-  .gapmark i:first-child { background: var(--blue); } .gapmark i:last-child { background: var(--red); }
+  .mark { display: flex; align-items: center; gap: 18px; }
+  .logo { flex: none; display: block; overflow: visible; }
   h1 { margin: 0; font: 700 44px/1 var(--display); letter-spacing: -.01em; }
   .tagline { margin: 6px 0 0; font: 600 18px/1.2 var(--display); color: var(--muted); }
   .credits { font: 400 12px/1.6 var(--mono); text-transform: uppercase; letter-spacing: .08em; text-align: right; color: var(--muted); }
@@ -146,6 +144,7 @@
     header, main, footer { padding-left: 16px; padding-right: 16px; }
     .track { grid-template-columns: repeat(2, 1fr); row-gap: 18px; } .rail { display: none; }
     .big .n { font-size: 80px; } #addr { font-size: 22px; } .credits { text-align: left; }
+    .logo { width: 92px; height: 32px; } h1 { font-size: 36px; }
     .line-head { flex-wrap: wrap; } .line-head .meta { white-space: normal; flex-basis: 100%; order: 3; }
     .how svg { display: none; } .how-list { display: block; }
     table.dep th:nth-child(3), table.dep td:nth-child(3), table.dep th:nth-child(4), table.dep td:nth-child(4) { display: none; }
@@ -157,7 +156,12 @@
 <div class="hazard"></div>
 <header>
   <div class="mark">
-    <div class="gapmark" aria-hidden="true"><i></i><i></i></div>
+    <!-- our own mark: the SF line and the London line meeting at an interchange -->
+    <svg class="logo" viewBox="0 0 140 48" width="140" height="48" aria-hidden="true">
+      <path id="logoSF" d="M4 24 H70" stroke="#0019A8" stroke-width="12" fill="none"/>
+      <path id="logoLDN" d="M136 24 H70" stroke="#60399E" stroke-width="12" fill="none"/>
+      <circle id="logoStn" cx="70" cy="24" r="16" fill="#fff" stroke="#111" stroke-width="7"/>
+    </svg>
     <div>
       <h1>Mind the Gap</h1>
       <p class="tagline">Built in SF. Fixed in London.</p>
@@ -451,6 +455,10 @@ async function loadSamples() {
 
 /* how it works: the line draws in, then a train runs SF to London */
 if (!reduce) {
+  // logo: the two lines draw in towards each other, then the interchange pops in
+  gsap.timeline({delay: 0.2})
+    .fromTo(["#logoSF", "#logoLDN"], {drawSVG: "0%"}, {drawSVG: "100%", duration: 0.7, ease: "power2.inOut"})
+    .from("#logoStn", {scale: 0, transformOrigin: "50% 50%", duration: 0.45, ease: "back.out(2.2)"}, "-=0.15");
   // the line draws once, then a train runs it on a loop, stopping and lighting up each station
   gsap.fromTo("#howline", {drawSVG: "0%"}, {drawSVG: "100%", duration: 1.4, ease: "power1.inOut"});
   gsap.set("#train", {opacity: 0});
