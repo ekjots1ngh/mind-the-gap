@@ -32,7 +32,7 @@ LABELS = {
     "gpt-6-sol+rules": ("GPT-6 Sol + written rules", "SF frontier model with the house rules pasted into its prompt"),
     "london-qwen3-4b-v1": ("London model v1", "Qwen3 4B + Mubit adapter, trained on our corrections"),
     "london-qwen3-4b-v2": ("London model v2", "Qwen3 4B + Mubit adapter, after the v2 round of corrections"),
-    "london-taught": ("London model, taught by GPT", "Qwen3 4B + Mubit adapter, trained on GPT-with-rules answers our team rated Good"),
+    "london-taught": ("London model, taught by GPT", "Qwen3 4B + Mubit adapter, trained on 28 of GPT-4.1 mini's answers with the written rules"),
 }
 ORDER = ["gpt-4.1-mini", "gpt-6-sol", "gpt-4.1-mini+rules", "gpt-6-sol+rules", "london-qwen3-4b-v1", "london-qwen3-4b-v2", "london-taught"]
 SETS = {"": "Test set 1", "testset2": "Test set 2"}
