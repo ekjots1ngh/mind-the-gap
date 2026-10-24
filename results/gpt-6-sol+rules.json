@@ -1,0 +1,842 @@
+[
+ {
+  "set": "seen streets",
+  "input": "Flat 3  ,82 Coldharbour Ln  ,brixton  ,sw98lh",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "82",
+   "street": "Coldharbour Ln",
+   "area": "Brixton",
+   "postcode": "SW9 8LH"
+  },
+  "reply": "{\"flat\":\"Flat 3\",\"number\":\"82\",\"street\":\"Coldharbour Ln\",\"area\":\"Brixton\",\"postcode\":\"SW9 8LH\"}",
+  "ms": 1341,
+  "tokens": {
+   "in": 189,
+   "out": 66
+  },
+  "request_id": "mreq_01a16ab3cca67183a5db12d5bfa2a1a7",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 3 116 Walworth road Elephant and Castle london se17 1je",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "116",
+   "street": "Walworth Rd",
+   "area": "Elephant and Castle",
+   "postcode": "SE17 1JE"
+  },
+  "reply": "{\"flat\":\"Flat 3\",\"number\":\"116\",\"street\":\"Walworth Rd\",\"area\":\"Elephant and Castle\",\"postcode\":\"SE17 1JE\"}",
+  "ms": 1493,
+  "tokens": {
+   "in": 186,
+   "out": 65
+  },
+  "request_id": "mreq_01a16ab3cca97341b7e456e3acd57263",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B 225a Churchill Pl Canary Wharf London e14 5re",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "225a",
+   "street": "Churchill Pl",
+   "area": "Canary Wharf",
+   "postcode": "E14 5RE"
+  },
+  "reply": "{\"flat\":\"Flat 2B\",\"number\":\"225a\",\"street\":\"Churchill Pl\",\"area\":\"Canary Wharf\",\"postcode\":\"E14 5RE\"}",
+  "ms": 1152,
+  "tokens": {
+   "in": 186,
+   "out": 36
+  },
+  "request_id": "mreq_01a16ab3ccab7cd1bd72da1449eb38fa",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "108b Northampton Sq, Clerkenwell, EC1V 0HB",
+  "truth": {
+   "flat": null,
+   "number": "108b",
+   "street": "Northampton Sq",
+   "area": "Clerkenwell",
+   "postcode": "EC1V 0HB"
+  },
+  "reply": "{\"flat\":null,\"number\":\"108b\",\"street\":\"Northampton Sq\",\"area\":\"Clerkenwell\",\"postcode\":\"EC1V 0HB\"}",
+  "ms": 1025,
+  "tokens": {
+   "in": 184,
+   "out": 34
+  },
+  "request_id": "mreq_01a16ab3ccad7943acdd9641caa6f0f4",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B  ,124 Mare St  ,Hackney  ,e81he",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "124",
+   "street": "Mare St",
+   "area": "Hackney",
+   "postcode": "E8 1HE"
+  },
+  "reply": "{\"flat\":\"Flat 2B\",\"number\":\"124\",\"street\":\"Mare St\",\"area\":\"Hackney\",\"postcode\":\"E8 1HE\"}",
+  "ms": 1302,
+  "tokens": {
+   "in": 187,
+   "out": 62
+  },
+  "request_id": "mreq_01a16ab3ccb07810b94294c86ce7cfc0",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "top floor flat 207b Uxbridge Rd Shepherd's Bush london W128LJ",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "207b",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  },
+  "reply": "{\"flat\":\"Top Floor Flat\",\"number\":\"207b\",\"street\":\"Uxbridge Rd\",\"area\":\"Shepherd's Bush\",\"postcode\":\"W12 8LJ\"}",
+  "ms": 1487,
+  "tokens": {
+   "in": 187,
+   "out": 74
+  },
+  "request_id": "mreq_01a16ab3ccb77f41956d51f8d62daeb9",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "212b Uxbridge Rd Shepherd's Bush w12 8lj",
+  "truth": {
+   "flat": null,
+   "number": "212b",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  },
+  "reply": "{\"flat\":null,\"number\":\"212b\",\"street\":\"Uxbridge Rd\",\"area\":\"Shepherd's Bush\",\"postcode\":\"W12 8LJ\"}",
+  "ms": 1073,
+  "tokens": {
+   "in": 183,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3ccb87f22bc88c50c623e9135",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B 109b Mare St hackney e8 1he",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "109b",
+   "street": "Mare St",
+   "area": "Hackney",
+   "postcode": "E8 1HE"
+  },
+  "reply": "{\"flat\":\"Flat 2B\",\"number\":\"109b\",\"street\":\"Mare St\",\"area\":\"Hackney\",\"postcode\":\"E8 1HE\"}",
+  "ms": 1335,
+  "tokens": {
+   "in": 185,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3ccb8791393694d4a78201f1d",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 3  ,157 coldharbour ln  ,Brixton  ,SW9 8LH",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "157",
+   "street": "Coldharbour Ln",
+   "area": "Brixton",
+   "postcode": "SW9 8LH"
+  },
+  "reply": "{\"flat\":\"Flat 3\",\"number\":\"157\",\"street\":\"Coldharbour Ln\",\"area\":\"Brixton\",\"postcode\":\"SW9 8LH\"}",
+  "ms": 1214,
+  "tokens": {
+   "in": 191,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3d0aa79d3aa4c2b3d3d65702c",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Top Floor Flat, 177 northampton sq, Clerkenwell, London, EC1V0HB",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "177",
+   "street": "Northampton Sq",
+   "area": "Clerkenwell",
+   "postcode": "EC1V 0HB"
+  },
+  "reply": "{\"flat\":\"Top Floor Flat\",\"number\":\"177\",\"street\":\"Northampton Sq\",\"area\":\"Clerkenwell\",\"postcode\":\"EC1V 0HB\"}",
+  "ms": 1174,
+  "tokens": {
+   "in": 190,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3d0e478229c6d7e3867278098",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "39 uxbridge rd Shepherd's Bush w12 8lj",
+  "truth": {
+   "flat": null,
+   "number": "39",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  },
+  "reply": "{\"flat\":null,\"number\":\"39\",\"street\":\"Uxbridge Rd\",\"area\":\"Shepherd's Bush\",\"postcode\":\"W12 8LJ\"}",
+  "ms": 1511,
+  "tokens": {
+   "in": 181,
+   "out": 65
+  },
+  "request_id": "mreq_01a16ab3d1297301ac7950f6c1621a4f",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 14, 122a upper st, islington, London, n10ny",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "122a",
+   "street": "Upper St",
+   "area": "Islington",
+   "postcode": "N1 0NY"
+  },
+  "reply": "{\"flat\":\"Flat 14\",\"number\":\"122a\",\"street\":\"Upper St\",\"area\":\"Islington\",\"postcode\":\"N1 0NY\"}",
+  "ms": 1779,
+  "tokens": {
+   "in": 187,
+   "out": 83
+  },
+  "request_id": "mreq_01a16ab3d1c27630bdd37ae881e060a1",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 14  ,103 Coldharbour Ln  ,Brixton  ,London  ,SW98LH",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "103",
+   "street": "Coldharbour Ln",
+   "area": "Brixton",
+   "postcode": "SW9 8LH"
+  },
+  "reply": "{\"flat\":\"Flat 14\",\"number\":\"103\",\"street\":\"Coldharbour Ln\",\"area\":\"Brixton\",\"postcode\":\"SW9 8LH\"}",
+  "ms": 1540,
+  "tokens": {
+   "in": 192,
+   "out": 66
+  },
+  "request_id": "mreq_01a16ab3d1de7a229ae3418e07cf5c67",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B 42 uxbridge road Shepherd's Bush london w12 8lj",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "42",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  },
+  "reply": "{\"flat\":\"Flat 2B\",\"number\":\"42\",\"street\":\"Uxbridge Rd\",\"area\":\"Shepherd's Bush\",\"postcode\":\"W12 8LJ\"}",
+  "ms": 1438,
+  "tokens": {
+   "in": 187,
+   "out": 37
+  },
+  "request_id": "mreq_01a16ab3d1ef7b20afec70b9b40d55a0",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Top Floor Flat, 31a Mare St, Hackney, London, E81HE",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "31a",
+   "street": "Mare St",
+   "area": "Hackney",
+   "postcode": "E8 1HE"
+  },
+  "reply": "{\"flat\":\"Top Floor Flat\",\"number\":\"31a\",\"street\":\"Mare St\",\"area\":\"Hackney\",\"postcode\":\"E8 1HE\"}",
+  "ms": 1325,
+  "tokens": {
+   "in": 187,
+   "out": 67
+  },
+  "request_id": "mreq_01a16ab3d27871b2ae4d617f3ef39a6d",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 14  ,203 Mare St  ,Hackney  ,e8 1he",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "203",
+   "street": "Mare St",
+   "area": "Hackney",
+   "postcode": "E8 1HE"
+  },
+  "reply": "{\"flat\":\"Flat 14\",\"number\":\"203\",\"street\":\"Mare St\",\"area\":\"Hackney\",\"postcode\":\"E8 1HE\"}",
+  "ms": 1235,
+  "tokens": {
+   "in": 188,
+   "out": 33
+  },
+  "request_id": "mreq_01a16ab3d27f72b0b69a92629b58a4cb",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 3, 176 kilburn high rd, kilburn, NW66JP",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "176",
+   "street": "Kilburn High Rd",
+   "area": "Kilburn",
+   "postcode": "NW6 6JP"
+  },
+  "reply": "{\"flat\":\"Flat 3\",\"number\":\"176\",\"street\":\"Kilburn High Rd\",\"area\":\"Kilburn\",\"postcode\":\"NW6 6JP\"}",
+  "ms": 1465,
+  "tokens": {
+   "in": 186,
+   "out": 69
+  },
+  "request_id": "mreq_01a16ab3d5667592b8e53c939a828fcf",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "66b churchill pl, Canary Wharf, London, E14 5RE",
+  "truth": {
+   "flat": null,
+   "number": "66b",
+   "street": "Churchill Pl",
+   "area": "Canary Wharf",
+   "postcode": "E14 5RE"
+  },
+  "reply": "{\"flat\":null,\"number\":\"66b\",\"street\":\"Churchill Pl\",\"area\":\"Canary Wharf\",\"postcode\":\"E14 5RE\"}",
+  "ms": 1083,
+  "tokens": {
+   "in": 185,
+   "out": 33
+  },
+  "request_id": "mreq_01a16ab3d57b7be0b11d08d2b7dd6de8",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "158 Uxbridge Rd  ,Shepherd's Bush  ,w12 8lj",
+  "truth": {
+   "flat": null,
+   "number": "158",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  },
+  "reply": "{\"flat\":null,\"number\":\"158\",\"street\":\"Uxbridge Rd\",\"area\":\"Shepherd's Bush\",\"postcode\":\"W12 8LJ\"}",
+  "ms": 1280,
+  "tokens": {
+   "in": 187,
+   "out": 34
+  },
+  "request_id": "mreq_01a16ab3d70e7df3983b74b76b917d07",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "basement flat 100a Kilburn High road Kilburn NW6 6JP",
+  "truth": {
+   "flat": "Basement Flat",
+   "number": "100a",
+   "street": "Kilburn High Rd",
+   "area": "Kilburn",
+   "postcode": "NW6 6JP"
+  },
+  "reply": "{\"flat\":\"Basement Flat\",\"number\":\"100a\",\"street\":\"Kilburn High Rd\",\"area\":\"Kilburn\",\"postcode\":\"NW6 6JP\"}",
+  "ms": 1112,
+  "tokens": {
+   "in": 186,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3d7517cd18fea4b1528e87fa0",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 14, 232 northampton sq, Clerkenwell, London, ec1v 0hb",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "232",
+   "street": "Northampton Sq",
+   "area": "Clerkenwell",
+   "postcode": "EC1V 0HB"
+  },
+  "reply": "{\"flat\":\"Flat 14\",\"number\":\"232\",\"street\":\"Northampton Sq\",\"area\":\"Clerkenwell\",\"postcode\":\"EC1V 0HB\"}",
+  "ms": 1281,
+  "tokens": {
+   "in": 191,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3d78c75e0a3e6f5e5556ba6b9",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "basement flat  ,107b Uxbridge Rd  ,Shepherd's Bush  ,w128lj",
+  "truth": {
+   "flat": "Basement Flat",
+   "number": "107b",
+   "street": "Uxbridge Rd",
+   "area": "Shepherd's Bush",
+   "postcode": "W12 8LJ"
+  },
+  "reply": "{\"flat\":\"Basement Flat\",\"number\":\"107b\",\"street\":\"Uxbridge Rd\",\"area\":\"Shepherd's Bush\",\"postcode\":\"W12 8LJ\"}",
+  "ms": 2010,
+  "tokens": {
+   "in": 191,
+   "out": 77
+  },
+  "request_id": "mreq_01a16ab3d7a57032aafeb4359e42f359",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Flat 2B 59 Churchill Pl Canary Wharf e14 5re",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "59",
+   "street": "Churchill Pl",
+   "area": "Canary Wharf",
+   "postcode": "E14 5RE"
+  },
+  "reply": "{\"flat\":\"Flat 2B\",\"number\":\"59\",\"street\":\"Churchill Pl\",\"area\":\"Canary Wharf\",\"postcode\":\"E14 5RE\"}",
+  "ms": 1101,
+  "tokens": {
+   "in": 184,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3d7e47d238ef84f0b352dfab1",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 14, 210a kilburn high road, kilburn, London, nw6 6jp",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "210a",
+   "street": "Kilburn High Rd",
+   "area": "Kilburn",
+   "postcode": "NW6 6JP"
+  },
+  "reply": "{\"flat\":\"Flat 14\",\"number\":\"210a\",\"street\":\"Kilburn High Rd\",\"area\":\"Kilburn\",\"postcode\":\"NW6 6JP\"}",
+  "ms": 1328,
+  "tokens": {
+   "in": 191,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3d8b770429eb226c50510da68",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "60a Kilburn High Rd Kilburn london nw66jp",
+  "truth": {
+   "flat": null,
+   "number": "60a",
+   "street": "Kilburn High Rd",
+   "area": "Kilburn",
+   "postcode": "NW6 6JP"
+  },
+  "reply": "{\"flat\":null,\"number\":\"60a\",\"street\":\"Kilburn High Rd\",\"area\":\"Kilburn\",\"postcode\":\"NW6 6JP\"}",
+  "ms": 1327,
+  "tokens": {
+   "in": 181,
+   "out": 63
+  },
+  "request_id": "mreq_01a16ab3d9b773b1aa292a94d837c2dc",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "flat 3 91b churchill pl Canary Wharf London e145re",
+  "truth": {
+   "flat": "Flat 3",
+   "number": "91b",
+   "street": "Churchill Pl",
+   "area": "Canary Wharf",
+   "postcode": "E14 5RE"
+  },
+  "reply": "{\"flat\":\"Flat 3\",\"number\":\"91b\",\"street\":\"Churchill Pl\",\"area\":\"Canary Wharf\",\"postcode\":\"E14 5RE\"}",
+  "ms": 1147,
+  "tokens": {
+   "in": 184,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3db1f7cf1a5c2e9aff6b53276",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Top Floor Flat  ,98 Northampton Sq  ,clerkenwell  ,london  ,ec1v 0hb",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "98",
+   "street": "Northampton Sq",
+   "area": "Clerkenwell",
+   "postcode": "EC1V 0HB"
+  },
+  "reply": "{\"flat\":\"Top Floor Flat\",\"number\":\"98\",\"street\":\"Northampton Sq\",\"area\":\"Clerkenwell\",\"postcode\":\"EC1V 0HB\"}",
+  "ms": 1348,
+  "tokens": {
+   "in": 194,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3dbaa7211ba43858f5c92113b",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "seen streets",
+  "input": "Top Floor Flat 49 Station Rd Harrow ha12rt",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "49",
+   "street": "Station Rd",
+   "area": "Harrow",
+   "postcode": "HA1 2RT"
+  },
+  "reply": "{\"flat\":\"Top Floor Flat\",\"number\":\"49\",\"street\":\"Station Rd\",\"area\":\"Harrow\",\"postcode\":\"HA1 2RT\"}",
+  "ms": 1417,
+  "tokens": {
+   "in": 181,
+   "out": 64
+  },
+  "request_id": "mreq_01a16ab3dc0f7ea1964f8194c541a632",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "flat 2b, 8 Holloway road, Holloway, N7 6PA",
+  "truth": {
+   "flat": "Flat 2B",
+   "number": "8",
+   "street": "Holloway Rd",
+   "area": "Holloway",
+   "postcode": "N7 6PA"
+  },
+  "reply": "{\"flat\":\"Flat 2B\",\"number\":\"8\",\"street\":\"Holloway Rd\",\"area\":\"Holloway\",\"postcode\":\"N7 6PA\"}",
+  "ms": 1125,
+  "tokens": {
+   "in": 188,
+   "out": 36
+  },
+  "request_id": "mreq_01a16ab3dc307c22b7c21cd26e9487cf",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "19b Kingsland Rd dalston e8 4aa",
+  "truth": {
+   "flat": null,
+   "number": "19b",
+   "street": "Kingsland Rd",
+   "area": "Dalston",
+   "postcode": "E8 4AA"
+  },
+  "reply": "{\"flat\":null,\"number\":\"19b\",\"street\":\"Kingsland Rd\",\"area\":\"Dalston\",\"postcode\":\"E8 4AA\"}",
+  "ms": 1070,
+  "tokens": {
+   "in": 181,
+   "out": 32
+  },
+  "request_id": "mreq_01a16ab3dc8e7c70afb6f22a50356a98",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "Flat 14 89 Electric avenue Brixton SW9 8JX",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "89",
+   "street": "Electric Ave",
+   "area": "Brixton",
+   "postcode": "SW9 8JX"
+  },
+  "reply": "{\"flat\":\"Flat 14\",\"number\":\"89\",\"street\":\"Electric Ave\",\"area\":\"Brixton\",\"postcode\":\"SW9 8JX\"}",
+  "ms": 1203,
+  "tokens": {
+   "in": 184,
+   "out": 34
+  },
+  "request_id": "mreq_01a16ab3dde670a2b6156f5633910254",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "Top Floor Flat, 104a Portobello Rd, Notting Hill, W111LJ",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "104a",
+   "street": "Portobello Rd",
+   "area": "Notting Hill",
+   "postcode": "W11 1LJ"
+  },
+  "reply": "{\"flat\":\"Top Floor Flat\",\"number\":\"104a\",\"street\":\"Portobello Rd\",\"area\":\"Notting Hill\",\"postcode\":\"W11 1LJ\"}",
+  "ms": 1535,
+  "tokens": {
+   "in": 189,
+   "out": 76
+  },
+  "request_id": "mreq_01a16ab3dee47911be4412f2ad515108",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "Flat 14, 169 lordship ln, east dulwich, London, se22 8hn",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "169",
+   "street": "Lordship Ln",
+   "area": "East Dulwich",
+   "postcode": "SE22 8HN"
+  },
+  "reply": "{\"flat\":\"Flat 14\",\"number\":\"169\",\"street\":\"Lordship Ln\",\"area\":\"East Dulwich\",\"postcode\":\"SE22 8HN\"}",
+  "ms": 1589,
+  "tokens": {
+   "in": 190,
+   "out": 66
+  },
+  "request_id": "mreq_01a16ab3df807313a0bf8f21e0633898",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "Top Floor Flat 163b Lordship Ln East Dulwich SE22 8HN",
+  "truth": {
+   "flat": "Top Floor Flat",
+   "number": "163b",
+   "street": "Lordship Ln",
+   "area": "East Dulwich",
+   "postcode": "SE22 8HN"
+  },
+  "reply": "{\"flat\":\"Top Floor Flat\",\"number\":\"163b\",\"street\":\"Lordship Ln\",\"area\":\"East Dulwich\",\"postcode\":\"SE22 8HN\"}",
+  "ms": 1499,
+  "tokens": {
+   "in": 186,
+   "out": 66
+  },
+  "request_id": "mreq_01a16ab3df9e7952a09878613a510c50",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "Flat 14, 133 Lordship lane, East Dulwich, se22 8hn",
+  "truth": {
+   "flat": "Flat 14",
+   "number": "133",
+   "street": "Lordship Ln",
+   "area": "East Dulwich",
+   "postcode": "SE22 8HN"
+  },
+  "reply": "{\"flat\":\"Flat 14\",\"number\":\"133\",\"street\":\"Lordship Ln\",\"area\":\"East Dulwich\",\"postcode\":\"SE22 8HN\"}",
+  "ms": 1225,
+  "tokens": {
+   "in": 188,
+   "out": 34
+  },
+  "request_id": "mreq_01a16ab3e09a73229cae497a9080e6aa",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "206b Lordship Ln, East Dulwich, London, se22 8hn",
+  "truth": {
+   "flat": null,
+   "number": "206b",
+   "street": "Lordship Ln",
+   "area": "East Dulwich",
+   "postcode": "SE22 8HN"
+  },
+  "reply": "{\"flat\":null,\"number\":\"206b\",\"street\":\"Lordship Ln\",\"area\":\"East Dulwich\",\"postcode\":\"SE22 8HN\"}",
+  "ms": 1569,
+  "tokens": {
+   "in": 186,
+   "out": 33
+  },
+  "request_id": "mreq_01a16ab3e0b97111b99a690db7e5e672",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "basement flat, 21 Holloway Rd, Holloway, N7 6PA",
+  "truth": {
+   "flat": "Basement Flat",
+   "number": "21",
+   "street": "Holloway Rd",
+   "area": "Holloway",
+   "postcode": "N7 6PA"
+  },
+  "reply": "{\"flat\":\"Basement Flat\",\"number\":\"21\",\"street\":\"Holloway Rd\",\"area\":\"Holloway\",\"postcode\":\"N7 6PA\"}",
+  "ms": 1266,
+  "tokens": {
+   "in": 187,
+   "out": 35
+  },
+  "request_id": "mreq_01a16ab3e0f17393b237d3fe4685ec07",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "151 Electric avenue brixton London SW9 8JX",
+  "truth": {
+   "flat": null,
+   "number": "151",
+   "street": "Electric Ave",
+   "area": "Brixton",
+   "postcode": "SW9 8JX"
+  },
+  "reply": "{\"flat\":null,\"number\":\"151\",\"street\":\"Electric Ave\",\"area\":\"Brixton\",\"postcode\":\"SW9 8JX\"}",
+  "ms": 1162,
+  "tokens": {
+   "in": 181,
+   "out": 32
+  },
+  "request_id": "mreq_01a16ab3e19872c2ac19a8d03a85ca69",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "Basement Flat 156b Kingsland road Dalston e84aa",
+  "truth": {
+   "flat": "Basement Flat",
+   "number": "156b",
+   "street": "Kingsland Rd",
+   "area": "Dalston",
+   "postcode": "E8 4AA"
+  },
+  "reply": "{\"flat\":\"Basement Flat\",\"number\":\"156b\",\"street\":\"Kingsland Rd\",\"area\":\"Dalston\",\"postcode\":\"E8 4AA\"}",
+  "ms": 1752,
+  "tokens": {
+   "in": 183,
+   "out": 67
+  },
+  "request_id": "mreq_01a16ab3e2997f129386f79f98cc0215",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ },
+ {
+  "set": "new streets",
+  "input": "188b Kingsland Rd Dalston E84AA",
+  "truth": {
+   "flat": null,
+   "number": "188b",
+   "street": "Kingsland Rd",
+   "area": "Dalston",
+   "postcode": "E8 4AA"
+  },
+  "reply": "{\"flat\":null,\"number\":\"188b\",\"street\":\"Kingsland Rd\",\"area\":\"Dalston\",\"postcode\":\"E8 4AA\"}",
+  "ms": 1385,
+  "tokens": {
+   "in": 179,
+   "out": 62
+  },
+  "request_id": "mreq_01a16ab3e4e5709388aec1ead92b6ba6",
+  "fully_right": true,
+  "fields_right": 5,
+  "problems": []
+ }
+]
