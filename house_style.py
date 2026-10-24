@@ -29,6 +29,15 @@ FLAT_NUMBER_IN_TEXT = re.compile(r"(?<!floor )(?<!basement )\bflat\s+\d+[a-z]?\b
 HOUSE_NUMBER_IN_TEXT = re.compile(r"\b\d{1,4}[a-z]?\b", re.I)
 
 
+POSTCODE_PARTS = re.compile(r"\b([a-z]{1,2}\d[a-z\d]?)\s*(\d[a-z]{2})\b", re.I)
+
+
+def postcode_in(text):
+    """The postcode written in a raw address, in standard form, e.g. 'se228hn' -> 'SE22 8HN'."""
+    m = POSTCODE_PARTS.search(text or "")
+    return f"{m.group(1).upper()} {m.group(2).upper()}" if m else None
+
+
 def house_number_in(address):
     """Best guess at the house number in a raw address, e.g. '207b'."""
     text = POSTCODE_IN_TEXT.sub(" ", address)
@@ -62,7 +71,8 @@ def check(fields, raw_reply="", address=None):
             gaps.append({"field": "street", "problem": "street name needs proper capitals"})
     area = fields.get("area")
     if area:
-        if "," in area or "london" in area.lower():
+        # "Hackney, London" and "Hackney London" break the rule; "London Fields" is a real neighbourhood
+        if "," in area or area.strip().lower() == "london" or area.strip().lower().endswith(" london"):
             gaps.append({"field": "area", "problem": "area should be the neighbourhood only, e.g. Hackney"})
         if _badly_capitalised(area):
             gaps.append({"field": "area", "problem": "area needs proper capitals"})
@@ -75,4 +85,9 @@ def check(fields, raw_reply="", address=None):
     postcode = fields.get("postcode")
     if postcode and not POSTCODE.match(postcode.strip()):
         gaps.append({"field": "postcode", "problem": 'standard postcode format, e.g. "E14 5RE"'})
+    # facts guard: a model may only reformat the postcode it was given, never change it
+    # (London model v1 once turned SE22 8HN into SE2 2HN, which is in Abbey Wood)
+    given = postcode_in(address) if address else None
+    if given and postcode_in(postcode or "") != given:
+        gaps.append({"field": "postcode", "problem": f'should be "{given}", the postcode in the address'})
     return gaps

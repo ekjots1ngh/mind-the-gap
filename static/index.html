@@ -39,12 +39,12 @@
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .tagline { margin: 0; font: 700 34px/1.05 var(--display); }
   .sub { margin: 9px 0 0; font: 400 13px/1.4 var(--mono); color: var(--muted); }
-  .credits { font: 400 12px/1.6 var(--mono); text-transform: uppercase; letter-spacing: .08em; text-align: right; color: var(--muted); }
+  .credits { font: 400 13px/1.6 var(--mono); text-transform: uppercase; letter-spacing: .08em; text-align: right; color: var(--muted); }
   .credits b { color: var(--ink); font-weight: 600; }
 
   main { padding: 28px 48px 56px; display: grid; gap: 28px; }
   .grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 28px; align-items: start; }
-  .kicker { font: 600 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin: 0 0 10px; }
+  .kicker { font: 600 13px/1 var(--mono); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin: 0 0 10px; }
 
   /* departure board */
   .board { background: var(--board); color: var(--led); padding: 20px 24px 22px; position: relative; }
@@ -64,7 +64,7 @@
   #status { font: 700 19px/1.4 var(--dots); font-variation-settings: "ROND" 100; min-height: 27px; margin-top: 8px; text-shadow: 0 0 6px var(--led-soft); }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; position: relative; z-index: 1; }
   .chip { background: #1C1A16; color: #CFC6B4; border: 1px solid #3A3428; padding: 6px 10px; cursor: pointer;
-          font: 400 12px/1.3 var(--mono); text-align: left; }
+          font: 400 13px/1.3 var(--mono); text-align: left; }
   .chip:hover, .chip:focus-visible { color: var(--led); border-color: var(--led); outline: 0; }
 
   /* line diagrams */
@@ -79,7 +79,7 @@
          font: 400 12px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
   .cmp b { font: 700 22px/1 var(--dots); font-variation-settings: "ROND" 100; letter-spacing: 0; min-width: 96px; text-align: right; color: #9A968E; text-transform: none; }
   .cmp b.l { color: var(--eliz); }
-  .line-head .meta { font: 400 13px/1.2 var(--mono); color: var(--muted); flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .line-head .meta { font: 400 14px/1.2 var(--mono); color: var(--muted); flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .line-head .tally { white-space: nowrap; }
   .line-head .tally { margin-left: auto; font: 600 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
   .track { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); padding-top: 34px; }
@@ -89,15 +89,19 @@
   .stn .tick { width: 10px; height: 22px; margin: 0 0 0 2px; background: var(--ink); }
   .stn .val { margin-top: 26px; font: 600 16px/1.3 var(--mono); word-break: break-word; }
   .stn .val.none { color: var(--muted); font-style: italic; font-weight: 400; }
-  .stn .fix { margin-top: 4px; font: 400 13px/1.3 var(--mono); color: var(--green); }
+  .stn .fix { margin-top: 4px; font: 400 14px/1.3 var(--mono); color: var(--green); }
   .stn.bad .val { color: var(--red); text-decoration: line-through; text-decoration-thickness: 2px; }
   .stn.bad .tick { background: var(--red); }
   .stn.ok .tick { background: var(--green); }
-  .stn .why { font: 400 12px/1.3 var(--mono); color: var(--red); margin-top: 4px; }
+  .stn .why { font: 400 13px/1.3 var(--mono); color: var(--red); margin-top: 4px; }
   .terminus { display: flex; align-items: center; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
   .terminus button { background: var(--board); color: var(--led); border: 0; padding: 11px 16px; cursor: pointer;
                      font: 600 13px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-  .terminus code { font: 400 13px/1.4 var(--mono); color: var(--muted); flex: 1; min-width: 240px; }
+  .corrwrap { flex: 1; min-width: 240px; }
+  .terminus code { display: block; font: 400 14px/1.4 var(--mono); color: var(--ink); }
+  .terminus .note { display: block; margin-top: 6px; font: 400 13px/1.4 var(--mono); color: var(--muted); }
+  .rid { margin-top: 10px; font: 400 13px/1.4 var(--mono); color: var(--muted); }
+  .rid code { color: var(--ink); user-select: all; }
   .empty { font: 400 14px/1.5 var(--mono); color: var(--muted); padding: 22px 0 6px; }
 
   /* map */
@@ -105,7 +109,7 @@
   #map { height: 560px; border: 3px solid var(--rule); background: var(--paper-2); }
   .caption { background: var(--board); color: var(--led); padding: 12px 16px; font: 700 17px/1.4 var(--dots);
              font-variation-settings: "ROND" 100; text-shadow: 0 0 6px var(--led-soft); min-height: 50px; }
-  .caption small { display: block; font: 400 11px/1.4 var(--mono); color: #8C8577; text-shadow: none; letter-spacing: .06em; text-transform: uppercase; }
+  .caption small { display: block; font: 400 12px/1.4 var(--mono); color: #8C8577; text-shadow: none; letter-spacing: .06em; text-transform: uppercase; }
   .pinwrap { width: 20px; height: 20px; }
   .pin { width: 20px; height: 20px; border-radius: 50%; background: var(--red); border: 4px solid var(--ink); position: relative; }
   .pin::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--red); animation: ping 1.8s ease-out infinite; }
@@ -124,15 +128,15 @@
   .headline p { margin: 0; font: 600 17px/1.35 var(--display); }
   table.dep { width: 100%; border-collapse: collapse; position: relative; z-index: 1; margin-top: 18px; }
   table.dep th:nth-child(n+2), table.dep td:nth-child(n+2) { white-space: nowrap; width: 1%; padding-right: 22px; }
-  table.dep th { text-align: left; font: 600 11px/1 var(--mono); letter-spacing: .14em; color: #8C8577; text-transform: uppercase; padding: 0 10px 12px 0; }
+  table.dep th { text-align: left; font: 600 12px/1 var(--mono); letter-spacing: .14em; color: #8C8577; text-transform: uppercase; padding: 0 10px 12px 0; }
   table.dep td { padding: 9px 10px 9px 0; border-top: 1px dashed #3A3428; font: 700 21px/1.2 var(--dots); font-variation-settings: "ROND" 100; text-shadow: 0 0 6px var(--led-soft); vertical-align: middle; }
-  table.dep td.model small { display: block; font: 400 11px/1.3 var(--mono); color: #8C8577; text-shadow: none; letter-spacing: .04em; }
+  table.dep td.model small { display: block; font: 400 12px/1.3 var(--mono); color: #8C8577; text-shadow: none; letter-spacing: .04em; }
   table.dep tr.london td.model { color: #E9DFFF; }
   td.st-good { color: #39D26A !important; } td.st-minor { color: var(--led) !important; } td.st-severe { color: #FF5A48 !important; }
   .sets { display: flex; gap: 8px; }
   .sets button { background: transparent; color: #8C8577; border: 1px solid #3A3428; padding: 5px 9px; cursor: pointer; font: 600 11px/1 var(--mono); letter-spacing: .1em; }
   .sets button.on { color: var(--led); border-color: var(--led); }
-  .foot { font: 400 12px/1.5 var(--mono); color: #8C8577; margin-top: 12px; position: relative; z-index: 1; }
+  .foot { font: 400 13px/1.5 var(--mono); color: #8C8577; margin-top: 12px; position: relative; z-index: 1; }
 
   /* how it works */
   .how svg { width: 100%; height: auto; display: block; }
@@ -141,7 +145,7 @@
   .how-list li { position: relative; padding: 10px 0; font: 400 14px/1.4 var(--mono); color: var(--muted); }
   .how-list li b { display: block; font: 700 18px/1.2 var(--display); color: var(--ink); }
   .how-list li::before { content: ""; position: absolute; left: -45px; top: 14px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 4px solid var(--ink); }
-  footer { padding: 18px 48px 30px; border-top: 3px solid var(--rule); font: 400 11px/1.7 var(--mono); color: var(--muted); }
+  footer { padding: 18px 48px 30px; border-top: 3px solid var(--rule); font: 400 12px/1.7 var(--mono); color: var(--muted); }
   footer b { color: var(--ink); }
 
   .scoregrid .board { overflow-x: auto; }
@@ -179,7 +183,7 @@
     <div>
       <h1 class="sr">Mind the Gap</h1>
       <p class="tagline">Built in SF.<br>Fixed in London.</p>
-      <p class="sub">A London model, trained by Mubit from the team's corrections</p>
+      <p class="sub">Small London models, trained by Mubit from rated GPT answers</p>
     </div>
   </div>
   <div class="credits"><b>Night Shift</b> · Canary Wharf · Oct 2026<br>Every model call runs through <b>Mubit</b></div>
@@ -204,12 +208,14 @@
           <span class="meta" id="sfMeta">GPT-4.1 mini, live via Mubit</span><span class="tally" id="sfTally"></span></div>
         <div class="empty" id="sfEmpty">Send an address to see where the SF model goes wrong.</div>
         <div class="track" id="sfTrack" hidden><div class="rail" style="background:var(--blue)"></div></div>
-        <div class="terminus" id="term" hidden><button id="copy">Copy correction</button><code id="corr"></code></div>
+        <div class="rid" id="rid" hidden></div>
+        <div class="terminus" id="term" hidden><button id="copy">Copy correction</button><div class="corrwrap"><code id="corr"></code>
+          <small class="note">For the Bad rating in Mubit. Today only Good rows become training data, so this note records the fix but doesn't train it yet.</small></div></div>
       </section>
 
       <section class="line" id="ldn">
         <div class="line-head"><span class="roundline" style="background:var(--eliz)"></span><b>London line</b>
-          <span class="meta" id="ldnMeta">Qwen3 4B, trained by Mubit on our corrections</span><span class="tally" id="ldnTally"></span></div>
+          <span class="meta" id="ldnMeta">Qwen3 4B, trained by Mubit on rated GPT answers</span><span class="tally" id="ldnTally"></span></div>
         <div class="empty" id="ldnEmpty">The London model's answer appears here for our test addresses.</div>
         <div class="track" id="ldnTrack" hidden><div class="rail" style="background:var(--eliz)"></div></div>
       </section>
@@ -223,7 +229,7 @@
   </div>
 
   <section>
-    <p class="kicker">Scoreboard · 40 fresh London addresses, never used for training</p>
+    <p class="kicker">Scoreboard · 40 fresh London addresses per set, never used to train the models scored on them</p>
     <div class="scoregrid">
       <div class="headline" id="headline"></div>
       <div class="board">
@@ -239,26 +245,26 @@
 
   <section class="how">
     <p class="kicker">How it works</p>
-    <svg viewBox="0 0 1000 200" role="img" aria-label="SF model answers, London team fixes it, Mubit trains, London model answers">
+    <svg viewBox="0 0 1000 200" role="img" aria-label="SF model answers, ratings pick the examples, Mubit trains, London model answers">
       <path id="howline" d="M40 110 H300 L360 50 H640 L700 110 H960" stroke="#60399E" stroke-width="12" fill="none" stroke-linejoin="round"/>
       <g fill="#fff" stroke="#111" stroke-width="5">
         <circle id="s1" cx="110" cy="110" r="11"/><circle id="s2" cx="420" cy="50" r="11"/><circle id="s3" cx="580" cy="50" r="11"/><circle id="s4" cx="890" cy="110" r="11"/>
       </g>
       <g font-weight="700" font-size="19" fill="#111" text-anchor="middle">
-        <text x="110" y="150">SF model answers</text><text x="420" y="25">London team fixes it</text>
+        <text x="110" y="150">SF model answers</text><text x="420" y="25">Ratings pick the examples</text>
         <text x="580" y="92">Mubit trains</text><text x="890" y="150">London model answers</text>
       </g>
       <g font-size="13" fill="#5E5A52" text-anchor="middle" font-family="Plex Mono, monospace">
-        <text x="110" y="172">GPT through Mubit, one URL change</text><text x="420" y="113">Good, or Bad with the fix</text>
-        <text x="580" y="134">a Qwen3 4B adapter</text><text x="890" y="172">small, fast, yours</text>
+        <text x="110" y="172">GPT through Mubit, one URL change</text><text x="452" y="113">only Good rows become training data</text>
+        <text x="580" y="134">a Qwen3 4B adapter</text><text x="890" y="172">4B, trained on those rows</text>
       </g>
       <g id="train"><rect x="-22" y="-9" width="44" height="18" fill="#111"/><rect x="-16" y="-4" width="7" height="6" fill="#FFB000"/><rect x="-4" y="-4" width="7" height="6" fill="#FFB000"/><rect x="8" y="-4" width="7" height="6" fill="#FFB000"/></g>
     </svg>
     <ol class="how-list">
       <li><b>SF model answers</b>GPT through Mubit, one URL change</li>
-      <li><b>London team fixes it</b>Good, or Bad with the fix</li>
+      <li><b>Ratings pick the examples</b>only Good rows become training data</li>
       <li><b>Mubit trains</b>a Qwen3 4B adapter</li>
-      <li><b>London model answers</b>small, fast, yours</li>
+      <li><b>London model answers</b>4B, trained on those rows</li>
     </ol>
   </section>
 </main>
@@ -400,8 +406,12 @@ async function ask(address) {
     const d = await r.json();
     if (!r.ok) throw new Error(d.error || "request failed");
     const n = d.gaps.length;
-    say($("status"), n ? `SF model answered in ${d.ms} ms · ${n} gap${n > 1 ? "s" : ""}` : `SF model answered in ${d.ms} ms · all right`);
-    $("sfMeta").textContent = `GPT-4.1 mini, live via Mubit · ${d.ms} ms · ${d.checked}`;
+    const how = d.live === false ? "Offline: replayed GPT's recorded answer" : `SF model answered in ${d.ms} ms`;
+    say($("status"), `${how} · ${n ? `${n} gap${n > 1 ? "s" : ""}` : "all right"}`);
+    $("sfMeta").textContent = d.live === false ? `GPT-4.1 mini, recorded answer (no connection to Mubit) · ${d.checked}`
+      : `GPT-4.1 mini, live via Mubit · ${d.ms} ms · ${d.checked}`;
+    $("rid").hidden = !d.request_id;
+    if (d.request_id) $("rid").innerHTML = `Mubit request <code>${esc(d.request_id)}</code> · open it under Requests in the Mubit console to rate it`;
     $("sfTally").textContent = tally(n, "all"); $("sfTally").style.color = n ? "var(--red)" : "var(--green)";
     $("sfEmpty").hidden = true;
     const sfTrack = buildLine("sfTrack", d.fields, d.gaps.filter(g => g.field !== "format"));
@@ -414,7 +424,7 @@ async function ask(address) {
     await showPlace(d.geo);
     if (d.london) {
       const L = d.london, m = L.gaps.length;
-      $("ldnMeta").textContent = `${L.label} · recorded in Mubit · ${L.ms} ms`;
+      $("ldnMeta").textContent = `${L.label} · ${L.note} · recorded in Mubit, ${L.ms} ms`;
       $("ldnTally").textContent = tally(m, "all"); $("ldnTally").style.color = m ? "var(--red)" : "var(--green)";
       $("ldnEmpty").hidden = true;
       await animateLine(buildLine("ldnTrack", L.fields, L.gaps.filter(g => g.field !== "format")));
@@ -448,17 +458,29 @@ async function loadBoard(set = "") {
   }).join("") || `<tr><td colspan="5">No results yet. Run eval_sf.py.</td></tr>`;
   tb.querySelectorAll("[data-n]").forEach((el, i) => setTimeout(() => countUp(el, +el.dataset.n, "%"), reduce ? 0 : i * 60));
   tb.querySelectorAll("[data-st]").forEach(el => say(el, el.dataset.st));
-  $("depFoot").textContent = rows.some(m => m.id.includes("+rules")) ? "* the whole house rulebook is pasted into every single call" : "";
+  const notes = [];
+  if (rows.some(m => m.id.includes("+rules"))) notes.push("* the whole house rulebook is pasted into every call");
+  if (rows.some(m => m.id.startsWith("london"))) notes.push("London models are timed in Mubit's playground and SF models through the API, so the times aren't like for like");
+  $("depFoot").textContent = notes.join(" · ");
+  // the headline compares each 4B student with the GPT model it learned from, on the same prompt
+  const TEACHER = {"london-qwen3-4b-v1": "gpt-4.1-mini", "london-taught": "gpt-4.1-mini+rules"};
+  const BASE = {"london-qwen3-4b-v1": "Same short instructions. Mubit trained this 4B student only on GPT-4.1 mini's answers that were rated Good",
+                "london-taught": "Same written house rules. Mubit trained this 4B student on 28 of GPT-4.1 mini's answers"};
   const ldn = rows.filter(m => m.id.startsWith("london")).sort((a, b) => b.fully_right - a.fully_right)[0];
-  const sf = rows.find(m => m.id === "gpt-6-sol") || rows.find(m => !m.id.startsWith("london") && !m.id.includes("+rules"));
-  if (ldn && sf) {
+  const sf = ldn && rows.find(m => m.id === TEACHER[ldn.id]);
+  if (ldn) {
+    const verdict = !sf ? ". The SF results for this set aren't in yet." : ldn.fully_right > sf.fully_right ? ", and it gets more fully right than its teacher."
+      : ldn.fully_right === sf.fully_right ? ", and it matches its teacher." : ", and its teacher still gets more fully right.";
+    const ms = m => m.median_ms.toLocaleString("en-GB") + " ms";
     $("headline").innerHTML = `<div class="big"><div><div class="n london" id="hlL">0%</div><div class="lbl">${esc(ldn.name)}</div></div>
-      <div><div class="n sf" id="hlS">0%</div><div class="lbl">${esc(sf.name)}</div></div></div>
-      <div class="cmps">${cmp("Every field right", ldn.fields_right + "%", sf.fields_right + "%")}
-      ${ldn.new != null && sf.new != null ? cmp("New streets, fully right", ldn.new + "%", sf.new + "%") : ""}
-      ${cmp("Median reply", ldn.median_ms.toLocaleString("en-GB") + " ms", sf.median_ms.toLocaleString("en-GB") + " ms")}</div>
-      <p>Fully right on ${ldn.n} fresh addresses. A 4B model that learned London house style from our corrections, against ${esc(sf.name)}, both given the app's short instructions.</p>`;
-    countUp($("hlL"), ldn.fully_right, "%"); countUp($("hlS"), sf.fully_right, "%");
+      ${sf ? `<div><div class="n sf" id="hlS">0%</div><div class="lbl">${esc(sf.name)}, its teacher</div></div>` : ""}</div>
+      ${sf ? `<div class="cmps">${cmp("Every field right", ldn.fields_right + "%", sf.fields_right + "%")}
+      ${ldn.id === "london-qwen3-4b-v1" && ldn.new != null && sf.new != null ? cmp("Unseen streets, fully right", ldn.new + "%", sf.new + "%") : ""}
+      ${cmp("Median reply (playground vs API)", ms(ldn), ms(sf))}</div>` : ""}
+      <p>Fully right on ${ldn.n} fresh addresses. ${esc(BASE[ldn.id] || "A 4B model trained by Mubit")}${verdict}</p>`;
+    countUp($("hlL"), ldn.fully_right, "%"); if (sf) countUp($("hlS"), sf.fully_right, "%");
+  } else {
+    $("headline").innerHTML = "";
   }
 }
 

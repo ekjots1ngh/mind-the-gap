@@ -62,6 +62,17 @@ class GapDetector(unittest.TestCase):
         self.assertEqual(house_number_in("top floor flat 207b Uxbridge Rd W128LJ"), "207b")
         self.assertEqual(house_number_in("Flat 14 ,203 Mare St ,Hackney ,e8 1he"), "203")
 
+    def test_changed_postcode_is_caught(self):
+        # London model v1's real miss on test set 1
+        fields = {"flat": "Top Floor Flat", "number": "163b", "street": "Lordship Ln", "area": "East Dulwich", "postcode": "SE2 2HN"}
+        gaps = check(fields, "", "Top Floor Flat 163b Lordship Ln East Dulwich SE22 8HN")
+        self.assertIn({"field": "postcode", "problem": 'should be "SE22 8HN", the postcode in the address'}, gaps)
+
+    def test_london_fields_is_a_real_area(self):
+        fields = {"flat": None, "number": "12", "street": "Richmond Rd", "area": "London Fields", "postcode": "E8 3QW"}
+        self.assertEqual(check(fields, "", "12 richmond rd london fields e8 3qw"), [])
+        self.assertTrue(check(dict(fields, area="Hackney London"), "", "12 richmond rd hackney london e8 3qw"))
+
     def test_missing_house_number_is_caught(self):
         gaps = check({k: TRUTH[k] for k in FIELDS} | {"number": None}, "", "flat 2b 155a mare st e8 1he")
         self.assertIn({"field": "number", "problem": 'house number is missing: "155a"'}, gaps)

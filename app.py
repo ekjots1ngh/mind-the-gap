@@ -30,7 +30,7 @@ LABELS = {
     "gpt-6-sol": ("GPT-6 Sol", "SF frontier model"),
     "gpt-4.1-mini+rules": ("GPT-4.1 mini + written rules", "SF model with the house rules pasted into its prompt"),
     "gpt-6-sol+rules": ("GPT-6 Sol + written rules", "SF frontier model with the house rules pasted into its prompt"),
-    "london-qwen3-4b-v1": ("London model v1", "Qwen3 4B + Mubit adapter, trained on our corrections"),
+    "london-qwen3-4b-v1": ("London model v1", "Qwen3 4B + Mubit adapter, trained on GPT-4.1 mini's answers rated Good"),
     "london-qwen3-4b-v2": ("London model v2", "Qwen3 4B + Mubit adapter, after the v2 round of corrections"),
     "london-taught": ("London model, taught by GPT", "Qwen3 4B + Mubit adapter, trained on 28 of GPT-4.1 mini's answers with the written rules"),
 }
@@ -86,8 +86,9 @@ def _recorded_london_answers():
     out = {}
     for f in sorted((ROOT / "results").rglob("london-*.json")):
         label = LABELS.get(f.stem, (f.stem, ""))[0]
+        note = "reads the written rules" if f.stem == "london-taught" else "same short prompt as the SF line"
         for r in json.loads(f.read_text(encoding="utf-8")):
-            out.setdefault(_key(r["input"]), {"label": label, "reply": r["reply"], "ms": r["ms"]})
+            out.setdefault(_key(r["input"]), {"label": label, "reply": r["reply"], "ms": r["ms"], "note": note})
     return out
 
 
@@ -100,18 +101,36 @@ def london_answer(address, truth):
         return None
     fields, _ = parse_reply(rec["reply"])
     fields = {k: ((fields or {}).get(k) or None) for k in FIELDS}
-    return {"label": rec["label"], "fields": fields, "ms": rec["ms"],
+    return {"label": rec["label"], "fields": fields, "ms": rec["ms"], "note": rec["note"],
             "gaps": gaps_against_truth(fields, rec["reply"], truth) if truth else check(fields, rec["reply"], address)}
+
+
+def recorded_sf_answer(address):
+    """GPT-4.1 mini's answer from an earlier eval run, used only if the live call fails (venue wifi)."""
+    for f in (ROOT / "results" / f"{SF_MODEL}.json", ROOT / "results" / "testset2" / f"{SF_MODEL}.json"):
+        if f.exists():
+            for r in json.loads(f.read_text(encoding="utf-8")):
+                if _key(r["input"]) == _key(address):
+                    return r
+    return None
 
 
 def parse_address(address):
     start = time.time()
-    raw = client.chat.completions.with_raw_response.create(
-        model=SF_MODEL,
-        messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": address}],
-    )
-    reply = raw.parse().choices[0].message.content
-    ms = round((time.time() - start) * 1000)
+    live, request_id = True, None
+    try:
+        raw = client.chat.completions.with_raw_response.create(
+            model=SF_MODEL,
+            messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": address}],
+        )
+        reply = raw.parse().choices[0].message.content
+        request_id = raw.headers.get("x-middleware-request-id")
+        ms = round((time.time() - start) * 1000)
+    except Exception:
+        rec = recorded_sf_answer(address)
+        if not rec:
+            raise
+        reply, ms, live = rec["reply"], rec["ms"], False
     fields, _ = parse_reply(reply)
     fields = {k: ((fields or {}).get(k) or None) for k in FIELDS}
     truth = TRUTH.get(_key(address))
@@ -121,7 +140,7 @@ def parse_address(address):
         gaps, checked = check(fields, reply, address), "checked against London house style rules"
     comment = "; ".join(f'{g["field"]}: {g["problem"]}' for g in gaps)
     return {"model": SF_MODEL, "reply": reply, "fields": fields, "gaps": gaps, "comment": comment,
-            "checked": checked, "ms": ms, "request_id": raw.headers.get("x-middleware-request-id"),
+            "checked": checked, "ms": ms, "request_id": request_id, "live": live,
             "london": london_answer(address, truth), "geo": locate(address)}
 
 
@@ -165,7 +184,12 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, scoreboard(set_name if set_name in SETS else ""))
         if self.path == "/api/samples":
             tests = json.loads((ROOT / "testset.json").read_text(encoding="utf-8"))
-            return self._send(200, [t["input"] for t in tests[::5]])
+            picks = [t["input"] for t in tests[::5]]
+            set2 = ROOT / "testset2.json"
+            if set2.exists():  # two set 2 addresses with the street written in full, for the taught model
+                s2 = json.loads(set2.read_text(encoding="utf-8"))
+                picks += [s2[i]["input"] for i in (5, 33) if i < len(s2)]
+            return self._send(200, picks)
         self._send(404, {"error": "not found"})
 
     def do_POST(self):
